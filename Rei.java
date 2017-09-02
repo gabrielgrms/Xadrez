@@ -12,6 +12,7 @@ public class Rei extends Peca {
 	private int posicaox;
 	private int posicaoy;
 	private int posicaoxIni;
+	
 	public int getPosicaoxIni() {
 		return posicaoxIni;
 	}
@@ -56,8 +57,17 @@ public class Rei extends Peca {
 		this.tabuleiro = tabuleiro;
 	}
 
-	public boolean verificarXeque() {
-		return false;
+	public boolean verificarXeque(int posicaoXrei,int posicaoYrei, JButton espaco) {
+		int x,y;
+		
+		//verifica se tem alguma peça de outra cor na frente do rei
+		x = posicaoXrei;
+		y = posicaoYrei + 60;
+		while(y <= 470){
+			if(espaco.getComponentCount() != 0){
+				
+			}
+		}
 	}
 
 	public void usarJogadaEspecial(JLabel torre, JPanel tabuleiro) {
@@ -182,7 +192,10 @@ public class Rei extends Peca {
 							espacoAntigo.remove(0);
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
-							this.tabuleiro.repaint();		
+							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiBranco(espaco.getX());
+							this.tabuleiro.setPosicaoYReiBranco(espaco.getY());
 						}
 						//tem uma peca no espaco clicado
 						else{
@@ -213,6 +226,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiBranco(espaco.getX());
+							this.tabuleiro.setPosicaoYReiBranco(espaco.getY());
 						}
 						//tem uma peca no espaco clicado
 						else{
@@ -246,6 +262,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiBranco(espaco.getX());
+							this.tabuleiro.setPosicaoYReiBranco(espaco.getY());
 						}
 						//tem uma peca no espaco clicado
 						else{
@@ -279,6 +298,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiBranco(espaco.getX());
+							this.tabuleiro.setPosicaoYReiBranco(espaco.getY());
 						}
 						//tem uma peca no espaco clicado
 						else{
@@ -312,6 +334,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiBranco(espaco.getX());
+							this.tabuleiro.setPosicaoYReiBranco(espaco.getY());
 						}
 						//tem uma peca no espaco clicado
 						else{
@@ -345,6 +370,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiBranco(espaco.getX());
+							this.tabuleiro.setPosicaoYReiBranco(espaco.getY());
 						}
 						//tem uma peca no espaco clicado
 						else{
@@ -377,6 +405,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiBranco(espaco.getX());
+							this.tabuleiro.setPosicaoYReiBranco(espaco.getY());
 						}
 						//tem uma peca no espaco clicado
 						else{
@@ -409,6 +440,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiBranco(espaco.getX());
+							this.tabuleiro.setPosicaoYReiBranco(espaco.getY());
 						}
 						//tem uma peca no espaco clicado
 						else{
@@ -446,6 +480,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiPreto(espaco.getX());
+							this.tabuleiro.setPosicaoYReiPreto(espaco.getY());
 						}
 						else{
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -476,6 +513,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiPreto(espaco.getX());
+							this.tabuleiro.setPosicaoYReiPreto(espaco.getY());
 						}
 						else{
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -509,6 +549,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiPreto(espaco.getX());
+							this.tabuleiro.setPosicaoYReiPreto(espaco.getY());
 						}
 						else{
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -542,6 +585,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiPreto(espaco.getX());
+							this.tabuleiro.setPosicaoYReiPreto(espaco.getY());
 						}
 						else{
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -575,6 +621,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiPreto(espaco.getX());
+							this.tabuleiro.setPosicaoYReiPreto(espaco.getY());
 						}
 						else{
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -608,6 +657,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiPreto(espaco.getX());
+							this.tabuleiro.setPosicaoYReiPreto(espaco.getY());
 						}
 						else{
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -640,6 +692,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiPreto(espaco.getX());
+							this.tabuleiro.setPosicaoYReiPreto(espaco.getY());
 						}
 						else{
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -672,6 +727,9 @@ public class Rei extends Peca {
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
+							
+							this.tabuleiro.setPosicaoXReiPreto(espaco.getX());
+							this.tabuleiro.setPosicaoYReiPreto(espaco.getY());
 						}
 						else{
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);

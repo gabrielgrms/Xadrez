@@ -11,6 +11,7 @@ public abstract class Peca extends MouseAdapter {
 	private Color cor;
 	private boolean selecionada = false;
 	private boolean podeSelecionar = true;
+	String tipo;
 
 	public void movimentarPeca() {
 
@@ -34,6 +35,15 @@ public abstract class Peca extends MouseAdapter {
 
 	public void setPodeSelecionar(boolean podeSelecionar) {
 		this.podeSelecionar = podeSelecionar;
+	}
+	
+	//seta o tipo de peça que sera construida
+	public void setTipo(String tipo){
+		this.tipo = tipo;
+	}
+	
+	public String getTipo(){
+		return tipo;
 	}
 	
 }

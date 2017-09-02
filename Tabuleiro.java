@@ -95,6 +95,8 @@ public class Tabuleiro extends JFrame {
 	//botao das pecas comidas
 	private JButton botaoPecas;
 	
+	private int posicaoXreiBranco,posicaoYreiBranco,posicaoXreiPreto,posicaoYreiPreto;
+	
 	//coordenadas iniciais
 	int xTabuleiro = 50, yTabuleiro = 50, xPecaPreta = 50, yPecaPreta = 50,xPecaBranca = 50,yPecaBranca = 410;
 	
@@ -236,6 +238,7 @@ public class Tabuleiro extends JFrame {
 					imagemLabelPeaoBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 					
 					Peao PeaoBranco = new Peao(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelPeaoBranco,this);
+					PeaoBranco.setTipo("peao");
 					pecas.add(PeaoBranco);
 					imagemLabelPeaoBranco.addMouseListener(PeaoBranco);
 					
@@ -253,6 +256,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelTorre1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Torre torreBranco = new Torre(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelTorre1Branco,this);
+						torreBranco.setTipo("torre");
 						pecas.add(torreBranco);
 						imagemLabelTorre1Branco.addMouseListener(torreBranco);
 						
@@ -265,6 +269,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelBispo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Bispo bispoBranco = new Bispo(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelBispo1Branco,this);
+						bispoBranco.setTipo("bispo");
 						pecas.add(bispoBranco);
 						imagemLabelBispo1Branco.addMouseListener(bispoBranco);
 						
@@ -277,6 +282,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelReiBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Rei reiBranco = new Rei(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelReiBranco,this);
+						reiBranco.setTipo("rei");
 						pecas.add(reiBranco);
 						imagemLabelReiBranco.addMouseListener(reiBranco);
 						
@@ -289,6 +295,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelCavalo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo2Branco,this);
+						cavaloBranco.setTipo("cavalo");
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo2Branco.addMouseListener(cavaloBranco);
 						
@@ -301,6 +308,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelCavalo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo1Branco,this);
+						cavaloBranco.setTipo("cavalo");
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo1Branco.addMouseListener(cavaloBranco);
 						
@@ -313,6 +321,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelRainhaBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Rainha rainhaBranco = new Rainha(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelRainhaBranco,this);
+						rainhaBranco.setTipo("rainha");
 						pecas.add(rainhaBranco);
 						imagemLabelRainhaBranco.addMouseListener(rainhaBranco);
 						
@@ -325,6 +334,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelBispo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Bispo bispoBranco = new Bispo(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelBispo2Branco,this);
+						bispoBranco.setTipo("bispo");
 						pecas.add(bispoBranco);
 						imagemLabelBispo2Branco.addMouseListener(bispoBranco);
 						
@@ -337,6 +347,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelTorre2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Torre torreBranco = new Torre(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelTorre2Branco,this);
+						torreBranco.setTipo("torre");
 						pecas.add(torreBranco);
 						imagemLabelTorre2Branco.addMouseListener(torreBranco);
 						
@@ -353,6 +364,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelTorre1Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Torre torrePreto = new Torre(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelTorre1Preto,this);
+							torrePreto.setTipo("torre");
 							pecas.add(torrePreto);
 							imagemLabelTorre1Preto.addMouseListener(torrePreto);
 							
@@ -365,6 +377,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelBispo1Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Bispo bispoPreto = new Bispo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelBispo1Preto,this);
+							bispoPreto.setTipo("bispo");
 							pecas.add(bispoPreto);
 							imagemLabelBispo1Preto.addMouseListener(bispoPreto);
 							
@@ -377,6 +390,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelReiPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Rei reiPreto = new Rei(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelReiPreto,this);
+							reiPreto.setTipo("rei");
 							pecas.add(reiPreto);
 							imagemLabelReiPreto.addMouseListener(reiPreto);
 							
@@ -389,6 +403,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelCavalo2Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Cavalo cavaloPreto = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo2Preto,this);
+							cavaloPreto.setTipo("cavalo");
 							pecas.add(cavaloPreto);
 							imagemLabelCavalo2Preto.addMouseListener(cavaloPreto);
 							
@@ -414,6 +429,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelCavalo1Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Cavalo cavaloPreto = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo1Preto,this);
+							cavaloPreto.setTipo("cavalo");
 							pecas.add(cavaloPreto);
 							imagemLabelCavalo1Preto.addMouseListener(cavaloPreto);
 							
@@ -426,6 +442,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelRainhaPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Rainha rainhaPreto = new Rainha(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelRainhaPreto,this);
+							rainhaPreto.setTipo("rainha");
 							pecas.add(rainhaPreto);
 							imagemLabelRainhaPreto.addMouseListener(rainhaPreto);
 							
@@ -438,6 +455,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelBispo2Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Bispo bispoPreto = new Bispo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelBispo2Preto,this);
+							bispoPreto.setTipo("bispo");
 							pecas.add(bispoPreto);
 							imagemLabelBispo2Preto.addMouseListener(bispoPreto);
 							
@@ -450,6 +468,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelTorre2Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Torre torrePreto = new Torre(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelTorre2Preto,this);
+							torrePreto.setTipo("torre");
 							pecas.add(torrePreto);
 							imagemLabelTorre2Preto.addMouseListener(torrePreto);
 							
@@ -474,6 +493,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelPeaoPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 						
 						Peao PeaoPreto = new Peao(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelPeaoPreto,this);
+						PeaoPreto.setTipo("peao");
 						pecas.add(PeaoPreto);
 						imagemLabelPeaoPreto.addMouseListener(PeaoPreto);
 						
@@ -650,6 +670,8 @@ public class Tabuleiro extends JFrame {
 				JLabel pecaNaFrente = (JLabel)c;
 				cavalo.movimentarPeca(pecaNaFrente,null, tabuleiro);
 			}
+			
+			
 		}
 		return false;
 	}
@@ -682,6 +704,21 @@ public class Tabuleiro extends JFrame {
 		return tabuleiro;
 	}
 	
+	public void setPosicaoXReiBranco(int x){
+		this.posicaoXreiBranco = x;
+	}
+	
+	public void setPosicaoYReiBranco(int y){
+		this.posicaoYreiBranco = y;
+	}
+	
+	public void setPosicaoXReiPreto(int x){
+		this.posicaoXreiPreto = x;
+	}
+	
+	public void setPosicaoYReiPreto(int y){
+		this.posicaoYreiPreto = y;
+	}
 
 	public static void main(String [] args){
 		new Tabuleiro();
