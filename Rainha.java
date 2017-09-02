@@ -52,6 +52,9 @@ public class Rainha extends Peca {
 				this.cor = cor;
 				this.icon = img;
 				this.tabuleiro = tabuleiro;
+				if(this.cor == Color.BLACK){
+					this.podeSelecionar = false;
+				}
 	}
 	
 	private boolean verificaEspacoSuperior(JButton espaco,JPanel tabuleiro){
@@ -2032,5 +2035,14 @@ public class Rainha extends Peca {
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
 	}
+
+	public Color getCor() {
+		return cor;
+	}
+
+	public void setCor(Color cor) {
+		this.cor = cor;
+	}
+	
 	
 }

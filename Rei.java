@@ -54,6 +54,9 @@ public class Rei extends Peca {
 		this.cor = cor;
 		this.icon = img;
 		this.tabuleiro = tabuleiro;
+		if(this.cor == Color.BLACK){
+			this.podeSelecionar = false;
+		}
 	}
 
 	public boolean verificarXeque() {
@@ -954,6 +957,11 @@ public class Rei extends Peca {
 						}
 					}
 				}
+				if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
+					usarJogadaEspecial(pecaNaFrente, tabuleiro);
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao(false,this.cor);
+				}
 				else{
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao(false,this.cor);
@@ -1216,6 +1224,12 @@ public class Rei extends Peca {
 						}
 					}
 				}
+				//Roque
+				if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
+					usarJogadaEspecial(pecaNaFrente, tabuleiro);
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao(false,this.cor);
+				}
 				else{
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao(false,this.cor);
@@ -1339,15 +1353,8 @@ public class Rei extends Peca {
 				this.tabuleiro.destravaSelecao(false,this.cor);
 			}
 		}
-		else if(pecaNaFrente!=null){
-			//Roque
-			if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
-				System.out.println("entrei1");
-				usarJogadaEspecial(pecaNaFrente, tabuleiro);
-			}
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao(false,this.cor);
-		}
 	}
 	
 	public void mouseClicked(MouseEvent e){
@@ -1406,6 +1413,14 @@ public class Rei extends Peca {
 
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
+	}
+
+	public Color getCor() {
+		return cor;
+	}
+
+	public void setCor(Color cor) {
+		this.cor = cor;
 	}
 	
 }

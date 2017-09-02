@@ -52,6 +52,9 @@ public class Bispo extends Peca {
 			this.cor = cor;
 			this.icon = img;
 			this.tabuleiro = tabuleiro;
+			if(this.cor == Color.BLACK){
+				this.podeSelecionar = false;
+			}
 	}
 	
 	private boolean verificaEspacoSuperiorEsquerda(JButton espaco,JPanel tabuleiro){
@@ -1044,5 +1047,14 @@ public void mouseClicked(MouseEvent e){
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
 	}
+
+	public Color getCor() {
+		return cor;
+	}
+
+	public void setCor(Color cor) {
+		this.cor = cor;
+	}
+	
 	
 }

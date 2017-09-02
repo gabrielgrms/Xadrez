@@ -42,6 +42,9 @@ public class Peao extends Peca {
 		this.cor = cor;
 		this.icon = img;
 		this.tabuleiro = tabuleiro;
+		if(this.cor == Color.BLACK){
+			this.podeSelecionar = false;
+		}
 	}
 	public void usarJogadaEspecial(JPanel tabuleiro) {
 		if(this.cor == Color.WHITE && posicaoy == 50){
@@ -84,13 +87,8 @@ public class Peao extends Peca {
 	
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-			if(pecaMorta){
-				JOptionPane.showMessageDialog(null,"Esta peça esta fora do jogo","Movimento Invalido",JOptionPane.INFORMATION_MESSAGE);
-				this.selecionada = false;
-				this.tabuleiro.destravaSelecao(false,this.cor);
-			}
 			//Realiza o movimento caso tenha clicado num espaço
-			else if(espaco!=null && pecaNaFrente == null){
+			if(espaco!=null && pecaNaFrente == null){
 				if(this.cor == Color.WHITE){
 					if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy-60 == espaco.getY()){
 						atacarPeca(null,espaco,tabuleiro);
@@ -356,6 +354,12 @@ public class Peao extends Peca {
 		System.out.println(this.selecionada);
 	}
 	
+	public Color getCor() {
+		return cor;
+	}
+	public void setCor(Color cor) {
+		this.cor = cor;
+	}
 	public boolean getSelecionada(){
 		return this.selecionada;
 	}

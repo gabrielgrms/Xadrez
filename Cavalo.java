@@ -54,6 +54,9 @@ public class Cavalo extends Peca {
 				this.cor = cor;
 				this.icon = img;
 				this.tabuleiro = tabuleiro;
+				if(this.cor == Color.BLACK){
+					this.podeSelecionar = false;
+				}
 	}
 	
 
@@ -1127,6 +1130,16 @@ public class Cavalo extends Peca {
 
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
+	}
+
+
+	public Color getCor() {
+		return cor;
+	}
+
+
+	public void setCor(Color cor) {
+		this.cor = cor;
 	}
 	
 	

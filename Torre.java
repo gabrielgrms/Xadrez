@@ -49,6 +49,33 @@ public class Torre extends Peca {
 				this.cor = cor;
 				this.icon = img;
 				this.tabuleiro = tabuleiro;
+				if(this.cor == Color.BLACK){
+					this.podeSelecionar = false;
+				}
+	}
+
+	public int getPosicaox() {
+		return posicaox;
+	}
+
+	public void setPosicaox(int posicaox) {
+		this.posicaox = posicaox;
+	}
+
+	public int getPosicaoy() {
+		return posicaoy;
+	}
+
+	public void setPosicaoy(int posicaoy) {
+		this.posicaoy = posicaoy;
+	}
+
+	public Color getCor() {
+		return cor;
+	}
+
+	public void setCor(Color cor) {
+		this.cor = cor;
 	}
 
 	public void usarJogadaEspecial() {
