@@ -20,6 +20,8 @@ public class Tabuleiro extends JFrame {
 	
 	private JButton botaoBranco, botaoPreto;
 	
+	private JLabel jogadordavez = new JLabel("Vez do jogador BRANCO");
+	
 	//imagem do tabuleiro
 	private Icon imagemTabuleiro;
 	
@@ -143,6 +145,7 @@ public class Tabuleiro extends JFrame {
 		tabuleiro.setLayout(null);
 				
 		//define tamanho e posicao dos botoes
+		jogadordavez.setBounds(550, 145, 150, 50);
 		botaoReiniciar.setBounds(550, 530, 100, 30);
 		botaoInstrucoes.setBounds(550, 563, 100, 30);
 		botaoRegras.setBounds(550, 596, 100, 30);
@@ -155,6 +158,7 @@ public class Tabuleiro extends JFrame {
 		botaoSair.addActionListener(new FechaJogo());
 		botaoReiniciar.addActionListener(new ReiniciaJogo(this));
 		botaoPecas.addActionListener(new AparecePecasComidas("Peças fora do jogo"));
+		tabuleiro.add(jogadordavez);
 		tabuleiro.add(botaoReiniciar);
 		tabuleiro.add(botaoInstrucoes);
 		tabuleiro.add(botaoRegras);
@@ -551,8 +555,107 @@ public class Tabuleiro extends JFrame {
 		if(moved){
 			for(int i=0; i<pecas.size();i++){
 				Peca p = pecas.get(i);
-				p.setPodeSelecionar(true);
-			}			
+				if(p instanceof Peao){
+					Peao peao = (Peao)pecas.get(i);
+					if(peao.getCor() != cor){
+						peao.setPodeSelecionar(true);
+					}
+					else{
+						peao.setPodeSelecionar(false);
+					}
+				}
+				else if(p instanceof Rei){
+					Rei rei = (Rei)pecas.get(i);
+					if(rei.getCor() != cor){
+						rei.setPodeSelecionar(true);
+					}
+					else{
+						rei.setPodeSelecionar(false);
+					}
+				}
+				else if(p instanceof Bispo){
+					Bispo bispo = (Bispo)pecas.get(i);
+					if(bispo.getCor() != cor){
+						bispo.setPodeSelecionar(true);
+					}
+					else{
+						bispo.setPodeSelecionar(false);
+					}
+				}
+				else if(p instanceof Rainha){
+					Rainha rainha = (Rainha)pecas.get(i);
+					if(rainha.getCor() != cor){
+						rainha.setPodeSelecionar(true);
+					}
+					else{
+						rainha.setPodeSelecionar(false);
+					}
+				}
+				else if(p instanceof Torre){
+					Torre torre = (Torre)pecas.get(i);
+					if(torre.getCor() != cor){
+						torre.setPodeSelecionar(true);
+					}
+					else{
+						torre.setPodeSelecionar(false);
+					}
+				}
+				else if(p instanceof Cavalo){
+					Cavalo cavalo = (Cavalo)pecas.get(i);
+					if(cavalo.getCor() != cor){
+						cavalo.setPodeSelecionar(true);
+					}
+					else{
+						cavalo.setPodeSelecionar(false);
+					}
+				}
+			}
+			if(cor == Color.WHITE){
+				jogadordavez.setText("Vez do jogador PRETO");				
+			}
+			else{
+				jogadordavez.setText("Vez do jogador BRANCO");
+			}
+		}
+		else{
+			for(int i=0; i<pecas.size();i++){
+				Peca p = pecas.get(i);
+				if(p instanceof Peao){
+					Peao peao = (Peao)pecas.get(i);
+					if(peao.getCor() == cor){
+						peao.setPodeSelecionar(true);
+					}
+				}
+				else if(p instanceof Rei){
+					Rei rei = (Rei)pecas.get(i);
+					if(rei.getCor() == cor){
+						rei.setPodeSelecionar(true);
+					}
+				}
+				else if(p instanceof Bispo){
+					Bispo bispo = (Bispo)pecas.get(i);
+					if(bispo.getCor() == cor){
+						bispo.setPodeSelecionar(true);
+					}
+				}
+				else if(p instanceof Rainha){
+					Rainha rainha = (Rainha)pecas.get(i);
+					if(rainha.getCor() == cor){
+						rainha.setPodeSelecionar(true);
+					}
+				}
+				else if(p instanceof Torre){
+					Torre torre = (Torre)pecas.get(i);
+					if(torre.getCor() == cor){
+						torre.setPodeSelecionar(true);
+					}
+				}
+				else if(p instanceof Cavalo){
+					Cavalo cavalo = (Cavalo)pecas.get(i);
+					if(cavalo.getCor() == cor)
+						cavalo.setPodeSelecionar(true);
+					}
+				}
 		}
 	}
 	
