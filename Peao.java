@@ -151,7 +151,7 @@ public class Peao extends Peca {
 				}
 					else if(this.cor == Color.BLACK){
 						//ataque do peao preto
-						if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy+60 == espaco.getY()){
+						if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy+60 == espaco.getY() && espaco.getComponentCount() != 0 ){
 							atacarPeca(null,espaco,tabuleiro);
 							usarJogadaEspecial(tabuleiro);
 						}
