@@ -12,6 +12,7 @@ public class Rainha extends Peca {
 	private int posicaoy;
 	private int posicaoxIni;
 	private int posicaoyIni;
+	private boolean morta = false;
 			
 	public int getPosicaoxIni() {
 		return posicaoxIni;
@@ -213,7 +214,7 @@ public class Rainha extends Peca {
 					//Rainha branca movimenta para cima
 					if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 					
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoSuperior(espaco,tabuleiro)){
 					
 							if(espaco.getComponentCount() == 0){
@@ -260,7 +261,7 @@ public class Rainha extends Peca {
 					//rainha branca movimenta para baixo
 					else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
 						
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoInferior(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -306,7 +307,7 @@ public class Rainha extends Peca {
 		
 					//rainha branca movimenta para esquerda
 					else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -352,7 +353,7 @@ public class Rainha extends Peca {
 		
 					//rainha branca movimenta para a direita
 					else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -402,7 +403,7 @@ public class Rainha extends Peca {
 							//verifica se clicou na mesma diagonal que a rainha esta
 							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 								
-								//verifica se existe alguma peça no caminho da rainha
+								//verifica se existe alguma peÃ§a no caminho da rainha
 								if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 								
 									if(espaco.getComponentCount() == 0){
@@ -457,7 +458,7 @@ public class Rainha extends Peca {
 						
 						if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -512,7 +513,7 @@ public class Rainha extends Peca {
 					else if(espaco.getX() < posicaox && espaco.getY() > posicaoy){
 						if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -566,7 +567,7 @@ public class Rainha extends Peca {
 					else if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
 							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 								
-								//verifica se existe alguma peça no caminho da rainha
+								//verifica se existe alguma peÃ§a no caminho da rainha
 								if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 								
 									if(espaco.getComponentCount() == 0){
@@ -628,7 +629,7 @@ public class Rainha extends Peca {
 					//movimenta para cima
 					if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 					
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoSuperior(espaco,tabuleiro)){
 					
 							if(espaco.getComponentCount() == 0){
@@ -674,7 +675,7 @@ public class Rainha extends Peca {
 			
 					//movimenta para baixo
 					else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoInferior(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -721,7 +722,7 @@ public class Rainha extends Peca {
 					//movimenta para esquerda
 					else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
 						
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -768,7 +769,7 @@ public class Rainha extends Peca {
 					//movimenta para a direita
 					else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
 						
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -817,7 +818,7 @@ public class Rainha extends Peca {
 	
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -873,7 +874,7 @@ public class Rainha extends Peca {
 						
 						if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 													
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -928,7 +929,7 @@ public class Rainha extends Peca {
 						
 						if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -983,7 +984,7 @@ public class Rainha extends Peca {
 	
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -1042,7 +1043,7 @@ public class Rainha extends Peca {
 				//Rainha branca movimenta para cima
 				if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 				
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoSuperior(espaco,tabuleiro)){
 				
 						if(espaco.getComponentCount() == 0){
@@ -1089,7 +1090,7 @@ public class Rainha extends Peca {
 				//rainha branca movimenta para baixo
 				else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
 					
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoInferior(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1135,7 +1136,7 @@ public class Rainha extends Peca {
 	
 				//rainha branca movimenta para esquerda
 				else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1181,7 +1182,7 @@ public class Rainha extends Peca {
 	
 				//rainha branca movimenta para a direita
 				else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1231,7 +1232,7 @@ public class Rainha extends Peca {
 						//verifica se clicou na mesma diagonal que a rainha esta
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -1286,7 +1287,7 @@ public class Rainha extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1341,7 +1342,7 @@ public class Rainha extends Peca {
 				else if(espaco.getX() < posicaox && espaco.getY() > posicaoy){
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1395,7 +1396,7 @@ public class Rainha extends Peca {
 				else if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -1457,7 +1458,7 @@ public class Rainha extends Peca {
 				//movimenta para cima
 				if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 				
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoSuperior(espaco,tabuleiro)){
 				
 						if(espaco.getComponentCount() == 0){
@@ -1503,7 +1504,7 @@ public class Rainha extends Peca {
 		
 				//movimenta para baixo
 				else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoInferior(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1550,7 +1551,7 @@ public class Rainha extends Peca {
 				//movimenta para esquerda
 				else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
 					
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1597,7 +1598,7 @@ public class Rainha extends Peca {
 				//movimenta para a direita
 				else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
 					
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1646,7 +1647,7 @@ public class Rainha extends Peca {
 
 					if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1702,7 +1703,7 @@ public class Rainha extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 												
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1757,7 +1758,7 @@ public class Rainha extends Peca {
 					
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1812,7 +1813,7 @@ public class Rainha extends Peca {
 
 					if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1872,8 +1873,7 @@ public class Rainha extends Peca {
 			if(this.cor == Color.BLACK){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
-				Peca p = (Peca)pecaComida.getMouseListeners()[0];
-				p.setMorta(true);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1898,6 +1898,7 @@ public class Rainha extends Peca {
 			else if(this.cor == Color.WHITE){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1926,6 +1927,7 @@ public class Rainha extends Peca {
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1954,6 +1956,7 @@ public class Rainha extends Peca {
 			else if(this.cor == Color.WHITE){
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1981,9 +1984,19 @@ public class Rainha extends Peca {
 		}
 	}
 	
+	public boolean isMorta() {
+		return morta;
+	}
+
+	public void setMorta(boolean morta) {
+		this.morta = morta;
+	}
+
 	public void mouseClicked(MouseEvent e){
-		
-		if(this.selecionada){			
+		if(this.morta){
+		}
+		else if(this.selecionada){	
+			this.desativaHighlight();
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
 		}

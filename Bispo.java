@@ -13,6 +13,7 @@ public class Bispo extends Peca {
 	private int posicaoy;
 	private int posicaoxIni;
 	private int posicaoyIni;
+	private boolean morta = false;
 	public int getPosicaoxIni() {
 		return posicaoxIni;
 	}
@@ -149,7 +150,7 @@ public class Bispo extends Peca {
 							//verifica se clicou na mesma diagonal que o bispo esta
 							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 								
-								//verifica se existe alguma peça no caminho do bispo
+								//verifica se existe alguma peÃ§a no caminho do bispo
 								if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 									//eh um movimento
 									if(espaco.getComponentCount() == 0){
@@ -205,7 +206,7 @@ public class Bispo extends Peca {
 						
 						if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
@@ -261,7 +262,7 @@ public class Bispo extends Peca {
 
 						if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
@@ -317,7 +318,7 @@ public class Bispo extends Peca {
 						
 							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 								
-								//verifica se existe alguma peça no caminho do bispo
+								//verifica se existe alguma peÃ§a no caminho do bispo
 								if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 									//eh um movimento
 									if(espaco.getComponentCount() == 0){
@@ -374,7 +375,7 @@ public class Bispo extends Peca {
 						//verifica se clicou na mesma diagonal que o bispo esta
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
@@ -430,7 +431,7 @@ public class Bispo extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 						
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							//eh um movimento
 							if(espaco.getComponentCount() == 0){
@@ -486,7 +487,7 @@ public class Bispo extends Peca {
 
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							//eh um movimento
 							if(espaco.getComponentCount() == 0){
@@ -542,7 +543,7 @@ public class Bispo extends Peca {
 					
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
@@ -604,7 +605,7 @@ public class Bispo extends Peca {
 						//verifica se clicou na mesma diagonal que o bispo esta
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 								
 								Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -638,7 +639,7 @@ public class Bispo extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 						
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
 							
@@ -671,7 +672,7 @@ public class Bispo extends Peca {
 
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
 							
@@ -704,7 +705,7 @@ public class Bispo extends Peca {
 					
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 								Espaco espacoAux = (Espaco) espaco.getComponent(0);
 								
@@ -742,7 +743,7 @@ public class Bispo extends Peca {
 						//verifica se clicou na mesma diagonal que o bispo esta
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 								
 								Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -776,7 +777,7 @@ public class Bispo extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 						
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
 							
@@ -809,7 +810,7 @@ public class Bispo extends Peca {
 
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
 							
@@ -842,7 +843,7 @@ public class Bispo extends Peca {
 					
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 								Espaco espacoAux = (Espaco) espaco.getComponent(0);
 								
@@ -884,6 +885,7 @@ public class Bispo extends Peca {
 			if(this.cor == Color.BLACK){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -908,6 +910,7 @@ public class Bispo extends Peca {
 			else if(this.cor == Color.WHITE){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -936,6 +939,7 @@ public class Bispo extends Peca {
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -964,6 +968,7 @@ public class Bispo extends Peca {
 			else if(this.cor == Color.WHITE){
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -992,8 +997,10 @@ public class Bispo extends Peca {
 	}
 	
 public void mouseClicked(MouseEvent e){
-		
-		if(this.selecionada){			
+		if(this.morta){
+		}
+		else if(this.selecionada){		
+			this.desativaHighlight();
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
 		}
