@@ -11,6 +11,7 @@ public class Cavalo extends Peca {
 	private int posicaoy;
 	private int posicaoxIni;
 	private int posicaoyIni;
+	private boolean morta = false;
 	public int getPosicaoxIni() {
 		return posicaoxIni;
 	}
@@ -177,7 +178,7 @@ public class Cavalo extends Peca {
 					}
 				}
 				
-				//cavalo movimenta em l deitado para a direita começando de baixo
+				//cavalo movimenta em l deitado para a direita comeÃ§ando de baixo
 				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
 					
 					if(espaco.getComponentCount() == 0){
@@ -476,7 +477,7 @@ public class Cavalo extends Peca {
 					}
 				}
 				
-				//cavalo movimenta em l deitado para a direita começando de baixo
+				//cavalo movimenta em l deitado para a direita comeÃ§ando de baixo
 				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
 					
 					if(espaco.getComponentCount() == 0){
@@ -720,7 +721,7 @@ public class Cavalo extends Peca {
 						}
 				}
 				
-				//cavalo movimenta em l deitado para a direita começando de baixo
+				//cavalo movimenta em l deitado para a direita comeÃ§ando de baixo
 				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
 
 						Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -864,7 +865,7 @@ public class Cavalo extends Peca {
 						}
 				}
 				
-				//cavalo movimenta em l deitado para a direita começando de baixo
+				//cavalo movimenta em l deitado para a direita comeÃ§ando de baixo
 				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
 
 						Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -962,6 +963,7 @@ public class Cavalo extends Peca {
 			if(this.cor == Color.BLACK){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -986,6 +988,7 @@ public class Cavalo extends Peca {
 			else if(this.cor == Color.WHITE){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1014,6 +1017,7 @@ public class Cavalo extends Peca {
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1042,6 +1046,7 @@ public class Cavalo extends Peca {
 			else if(this.cor == Color.WHITE){
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1070,8 +1075,10 @@ public class Cavalo extends Peca {
 	}
 	
 	public void mouseClicked(MouseEvent e){
-		
-		if(this.selecionada){			
+		if(this.morta){
+		}
+		else if(this.selecionada){	
+			this.desativaHighlight();
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao(false,this.cor);
 		}
