@@ -15,6 +15,8 @@ public class Tabuleiro extends JFrame {
 	private ArrayList<Peca> pecas = new ArrayList<Peca>();
 
 	private static ArrayList<Peca> pecasForaDoJogo = new ArrayList<Peca>();
+  
+  private JLabel jogadordavez = new JLabel("Vez do jogador BRANCO");
 
 	private String espacos;
 	
@@ -144,18 +146,20 @@ public class Tabuleiro extends JFrame {
 		tabuleiro.setLayout(null);
 				
 		//define tamanho e posicao dos botoes
+		jogadordavez.setBounds(550, 145, 150, 50);
 		botaoReiniciar.setBounds(550, 530, 100, 30);
 		botaoInstrucoes.setBounds(550, 563, 100, 30);
 		botaoRegras.setBounds(550, 596, 100, 30);
 		botaoSair.setBounds(550, 629, 100, 30);
 		botaoPecas.setBounds(550,245,100,70);
 				
-		//adiciona aÃ§Ã£o nos botoes ao clicar com o mouse neles
+		//adiciona ação nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
-		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instruções"));
+		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instru��es"));
 		botaoSair.addActionListener(new FechaJogo());
 		botaoReiniciar.addActionListener(new ReiniciaJogo(this));
-		botaoPecas.addActionListener(new AparecePecasComidas("Peças fora do jogo"));
+		botaoPecas.addActionListener(new AparecePecasComidas("Pe�as fora do jogo"));
+		tabuleiro.add(jogadordavez);
 		tabuleiro.add(botaoReiniciar);
 		tabuleiro.add(botaoInstrucoes);
 		tabuleiro.add(botaoRegras);
@@ -518,37 +522,142 @@ public class Tabuleiro extends JFrame {
 	
 	public void travaSelecao(Peca peca){
 		for(int i=0; i<pecas.size();i++){
-			if(pecas.get(i)instanceof Peao && pecas.get(i) != peca){
-				Peao p = (Peao)pecas.get(i);
-				p.setPodeSelecionar(false);
+			if(pecas.get(i).getCor() == peca.getCor()){
+				if(pecas.get(i)instanceof Peao && pecas.get(i) != peca){
+					Peao p = (Peao)pecas.get(i);
+					p.setPodeSelecionar(false);
+				}
+				else if(pecas.get(i)instanceof Rei && pecas.get(i) != peca){
+					Rei rei = (Rei)pecas.get(i);
+					rei.setPodeSelecionar(false);
+				}
+				else if(pecas.get(i)instanceof Bispo && pecas.get(i) != peca){
+					Bispo bispo = (Bispo)pecas.get(i);
+					bispo.setPodeSelecionar(false);
+				}
+				else if(pecas.get(i)instanceof Rainha && pecas.get(i) != peca){
+					Rainha rainha = (Rainha)pecas.get(i);
+					rainha.setPodeSelecionar(false);
+				}
+				else if(pecas.get(i)instanceof Torre && pecas.get(i) != peca){
+					Torre torre = (Torre)pecas.get(i);
+					torre.setPodeSelecionar(false);
+				}
+				else if(pecas.get(i)instanceof Cavalo && pecas.get(i) != peca){
+					Cavalo cavalo = (Cavalo)pecas.get(i);
+					cavalo.setPodeSelecionar(false);
+				}
 			}
-			else if(pecas.get(i)instanceof Rei && pecas.get(i) != peca){
-				Rei rei = (Rei)pecas.get(i);
-				rei.setPodeSelecionar(false);
+			else{
+				pecas.get(i).setPodeSelecionar(false);
 			}
-			else if(pecas.get(i)instanceof Bispo && pecas.get(i) != peca){
-				Bispo bispo = (Bispo)pecas.get(i);
-				bispo.setPodeSelecionar(false);
-			}
-			else if(pecas.get(i)instanceof Rainha && pecas.get(i) != peca){
-				Rainha rainha = (Rainha)pecas.get(i);
-				rainha.setPodeSelecionar(false);
-			}
-			else if(pecas.get(i)instanceof Torre && pecas.get(i) != peca){
-				Torre torre = (Torre)pecas.get(i);
-				torre.setPodeSelecionar(false);
-			}
-			else if(pecas.get(i)instanceof Cavalo && pecas.get(i) != peca){
-				Cavalo cavalo = (Cavalo)pecas.get(i);
-				cavalo.setPodeSelecionar(false);
-			}
-			
 		}
 	}
-	public void destravaSelecao(){
-		for(int i=0; i<pecas.size();i++){
+	public void destravaSelecao(boolean moved,Color cor){
+		if(moved){
+			for(int i=0; i<pecas.size();i++){
 				Peca p = pecas.get(i);
-				p.setPodeSelecionar(true);
+				if(p instanceof Peao){
+					Peao peao = (Peao)pecas.get(i);
+					if(peao.getCor() != cor){
+						peao.setPodeSelecionar(true);
+					}
+					else{
+						peao.setPodeSelecionar(false);
+					}
+				}
+				else if(p instanceof Rei){
+					Rei rei = (Rei)pecas.get(i);
+					if(rei.getCor() != cor){
+						rei.setPodeSelecionar(true);
+					}
+					else{
+						rei.setPodeSelecionar(false);
+					}
+				}
+				else if(p instanceof Bispo){
+					Bispo bispo = (Bispo)pecas.get(i);
+					if(bispo.getCor() != cor){
+						bispo.setPodeSelecionar(true);
+					}
+					else{
+						bispo.setPodeSelecionar(false);
+					}
+				}
+				else if(p instanceof Rainha){
+					Rainha rainha = (Rainha)pecas.get(i);
+					if(rainha.getCor() != cor){
+						rainha.setPodeSelecionar(true);
+					}
+					else{
+						rainha.setPodeSelecionar(false);
+					}
+				}
+				else if(p instanceof Torre){
+					Torre torre = (Torre)pecas.get(i);
+					if(torre.getCor() != cor){
+						torre.setPodeSelecionar(true);
+					}
+					else{
+						torre.setPodeSelecionar(false);
+					}
+				}
+				else if(p instanceof Cavalo){
+					Cavalo cavalo = (Cavalo)pecas.get(i);
+					if(cavalo.getCor() != cor){
+						cavalo.setPodeSelecionar(true);
+					}
+					else{
+						cavalo.setPodeSelecionar(false);
+					}
+				}
+			}
+			if(cor == Color.WHITE){
+				jogadordavez.setText("Vez do jogador PRETO");				
+			}
+			else{
+				jogadordavez.setText("Vez do jogador BRANCO");
+			}
+		}
+		else{
+			for(int i=0; i<pecas.size();i++){
+				Peca p = pecas.get(i);
+				if(p instanceof Peao){
+					Peao peao = (Peao)pecas.get(i);
+					if(peao.getCor() == cor){
+						peao.setPodeSelecionar(true);
+					}
+				}
+				else if(p instanceof Rei){
+					Rei rei = (Rei)pecas.get(i);
+					if(rei.getCor() == cor){
+						rei.setPodeSelecionar(true);
+					}
+				}
+				else if(p instanceof Bispo){
+					Bispo bispo = (Bispo)pecas.get(i);
+					if(bispo.getCor() == cor){
+						bispo.setPodeSelecionar(true);
+					}
+				}
+				else if(p instanceof Rainha){
+					Rainha rainha = (Rainha)pecas.get(i);
+					if(rainha.getCor() == cor){
+						rainha.setPodeSelecionar(true);
+					}
+				}
+				else if(p instanceof Torre){
+					Torre torre = (Torre)pecas.get(i);
+					if(torre.getCor() == cor){
+						torre.setPodeSelecionar(true);
+					}
+				}
+				else if(p instanceof Cavalo){
+					Cavalo cavalo = (Cavalo)pecas.get(i);
+					if(cavalo.getCor() == cor)
+						cavalo.setPodeSelecionar(true);
+					}
+				}
 		}
 	}
 	
