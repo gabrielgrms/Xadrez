@@ -737,6 +737,7 @@ public class Tabuleiro extends JFrame {
 				}
 			}
 		}
+		jogadordavez.setText("Vez do jogador BRANCO");
 		this.janelaJogo.repaint();
 		this.MontaComponentes();
 		this.janelaJogo.repaint();
