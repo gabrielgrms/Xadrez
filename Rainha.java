@@ -213,6 +213,7 @@ public class Rainha extends Peca {
 
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 		this.desativaHighlight();
+		
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.WHITE){
 				
@@ -2061,7 +2062,6 @@ public class Rainha extends Peca {
 	public void setCor(Color cor) {
 		this.cor = cor;
 	}
-	
 	public void desativaHighlight(){
 		//desativa o highlight
 		//verifica se o espaco clicado eh branco

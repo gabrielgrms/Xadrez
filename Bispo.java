@@ -147,6 +147,7 @@ public class Bispo extends Peca {
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 		this.desativaHighlight();
+		
 		//clicou no canto do espaco
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.WHITE){

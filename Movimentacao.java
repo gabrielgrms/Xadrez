@@ -16,6 +16,7 @@ public class Movimentacao extends MouseAdapter {
 	private JPanel tabuleiroJogo;
 	private Tabuleiro tabuleiro;
 	private Peca pecaEscolhida = null;
+	private Rei pecaRei = null;
 	
 	public Movimentacao(JButton espaco,Tabuleiro tabuleiro,JPanel tabuleiroJogo){
 		this.espaco = espaco;
@@ -34,6 +35,8 @@ public class Movimentacao extends MouseAdapter {
 			}
 			else if(tabuleiro.getPecas().get(i)instanceof Rei){
 				Rei rei = (Rei)tabuleiro.getPecas().get(i);
+				
+				this.pecaRei = rei;
 				
 				if(rei.getSelecionada()){
 					this.pecaEscolhida = rei;					
@@ -70,14 +73,14 @@ public class Movimentacao extends MouseAdapter {
 		}
 		
 		if(espaco!=null){
-				
-			tabuleiro.validarMovimento(this.pecaEscolhida, espaco);
+			
+			tabuleiro.validarMovimento(this.pecaEscolhida, espaco,this.pecaRei);
 			
 			//remove informacao da peca escolhida
 			this.pecaEscolhida = null;
 		}
 		else if(pecaBarra!=null){
-			tabuleiro.validarMovimento(pecaEscolhida, pecaBarra);
+			tabuleiro.validarMovimento(pecaEscolhida, pecaBarra,this.pecaRei);
 			
 			//remove a informacao da peca que esta na frente
 			this.pecaBarra = null;

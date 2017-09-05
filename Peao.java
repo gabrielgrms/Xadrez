@@ -20,7 +20,6 @@ public class Peao extends Peca {
 	private boolean podeSelecionar = true;
 	private boolean selecionada = false;
 	private boolean morta = false;
-	
 	public boolean isMorta() {
 		return morta;
 	}
@@ -347,9 +346,6 @@ public class Peao extends Peca {
 			this.tabuleiro.destravaSelecao(false,this.cor);
 		}
 	}
-
-
-
 	public void mouseClicked(MouseEvent e){
 		if(this.morta){
 		}
@@ -404,7 +400,6 @@ public class Peao extends Peca {
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
 	}
-	
 	public void desativaHighlight(){
 		//desativa o highlight
 		//verifica se o espaco clicado eh branco

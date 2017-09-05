@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Tabuleiro extends JFrame {
@@ -99,8 +100,6 @@ public class Tabuleiro extends JFrame {
 	
 	//coordenadas iniciais
 	int xTabuleiro = 50, yTabuleiro = 50, xPecaPreta = 50, yPecaPreta = 50,xPecaBranca = 50,yPecaBranca = 410;
-
-	private int posicaoXreiBranco,posicaoYreiBranco,posicaoXreiPreto,posicaoYreiPreto;
 	
 		
 	//construtor do tabuleiro (serve para reiniciar jogo)
@@ -699,7 +698,65 @@ public class Tabuleiro extends JFrame {
 		yPecaPreta = 50;
 		xPecaBranca = 50;
 		yPecaBranca = 410;
-		this.janelaJogo.getContentPane().remove(tabuleiro);		
+		this.janelaJogo.getContentPane().remove(tabuleiro);
+		for(int i=0; i<pecas.size();i++){
+			Peca p = pecas.get(i);
+			if(p instanceof Peao){
+				Peao peao = (Peao)pecas.get(i);
+				if(peao.getCor() != Color.BLACK){
+					peao.setPodeSelecionar(true);
+				}
+				else{
+					peao.setPodeSelecionar(false);
+				}
+			}
+			else if(p instanceof Rei){
+				Rei rei = (Rei)pecas.get(i);
+				if(rei.getCor() != Color.BLACK){
+					rei.setPodeSelecionar(true);
+				}
+				else{
+					rei.setPodeSelecionar(false);
+				}
+			}
+			else if(p instanceof Bispo){
+				Bispo bispo = (Bispo)pecas.get(i);
+				if(bispo.getCor() != Color.BLACK){
+					bispo.setPodeSelecionar(true);
+				}
+				else{
+					bispo.setPodeSelecionar(false);
+				}
+			}
+			else if(p instanceof Rainha){
+				Rainha rainha = (Rainha)pecas.get(i);
+				if(rainha.getCor() != Color.BLACK){
+					rainha.setPodeSelecionar(true);
+				}
+				else{
+					rainha.setPodeSelecionar(false);
+				}
+			}
+			else if(p instanceof Torre){
+				Torre torre = (Torre)pecas.get(i);
+				if(torre.getCor() != Color.BLACK){
+					torre.setPodeSelecionar(true);
+				}
+				else{
+					torre.setPodeSelecionar(false);
+				}
+			}
+			else if(p instanceof Cavalo){
+				Cavalo cavalo = (Cavalo)pecas.get(i);
+				if(cavalo.getCor() != Color.BLACK){
+					cavalo.setPodeSelecionar(true);
+				}
+				else{
+					cavalo.setPodeSelecionar(false);
+				}
+			}
+		}
+		jogadordavez.setText("Vez do jogador BRANCO");
 		this.janelaJogo.repaint();
 		this.MontaComponentes();
 		this.janelaJogo.repaint();
@@ -707,20 +764,30 @@ public class Tabuleiro extends JFrame {
 		
 	}
 
-	public boolean validarMovimento(Peca peca, Object c) {
+	public boolean validarMovimento(Peca peca, Object c,Rei r) {
 		if(peca instanceof Peao){
 			Peao p = (Peao)peca;
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				p.movimentarPeca(null,espaco, tabuleiro);
 				
+				System.out.println(r.getPosicaoXreiBranco());
+				System.out.println(r.getPosicaoYreiBranco());
+				System.out.println(r.getPosicaoXreiPreto());
+				System.out.println(r.getPosicaoYreiPreto());
+				
 				//significa que foi a vez do jogador preto jogar.
 				//verifica xeque do rei branco e preto (um movimento de peca preta pode gerar xeque-mate)
-				if(p.getCor().equals("preto")){
-					if(verificarXeque(p.getPosicaox(),p.getPosicaoy(),))
+				if(p.getCor() == Color.BLACK){
+					if(r.verificarXeque(p.getPosicaox(),p.getPosicaoy(),tabuleiro,p,p.getCor())){
+	                      JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+					}
+					
 				}
 				else{
-					
+					if(r.verificarXeque(p.getPosicaox(),p.getPosicaoy(),tabuleiro,p,p.getCor())){
+	                      JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 				
 			}
@@ -819,6 +886,7 @@ public class Tabuleiro extends JFrame {
 	public JPanel getPainel(){
 		return tabuleiro;
 	}
+	
 
 	public static void main(String [] args){
 		new Tabuleiro();
