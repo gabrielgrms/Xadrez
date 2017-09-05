@@ -679,7 +679,65 @@ public class Tabuleiro extends JFrame {
 		yPecaPreta = 50;
 		xPecaBranca = 50;
 		yPecaBranca = 410;
-		this.janelaJogo.getContentPane().remove(tabuleiro);		
+		this.janelaJogo.getContentPane().remove(tabuleiro);
+		for(int i=0; i<pecas.size();i++){
+			Peca p = pecas.get(i);
+			if(p instanceof Peao){
+				Peao peao = (Peao)pecas.get(i);
+				if(peao.getCor() != Color.BLACK){
+					peao.setPodeSelecionar(true);
+				}
+				else{
+					peao.setPodeSelecionar(false);
+				}
+			}
+			else if(p instanceof Rei){
+				Rei rei = (Rei)pecas.get(i);
+				if(rei.getCor() != Color.BLACK){
+					rei.setPodeSelecionar(true);
+				}
+				else{
+					rei.setPodeSelecionar(false);
+				}
+			}
+			else if(p instanceof Bispo){
+				Bispo bispo = (Bispo)pecas.get(i);
+				if(bispo.getCor() != Color.BLACK){
+					bispo.setPodeSelecionar(true);
+				}
+				else{
+					bispo.setPodeSelecionar(false);
+				}
+			}
+			else if(p instanceof Rainha){
+				Rainha rainha = (Rainha)pecas.get(i);
+				if(rainha.getCor() != Color.BLACK){
+					rainha.setPodeSelecionar(true);
+				}
+				else{
+					rainha.setPodeSelecionar(false);
+				}
+			}
+			else if(p instanceof Torre){
+				Torre torre = (Torre)pecas.get(i);
+				if(torre.getCor() != Color.BLACK){
+					torre.setPodeSelecionar(true);
+				}
+				else{
+					torre.setPodeSelecionar(false);
+				}
+			}
+			else if(p instanceof Cavalo){
+				Cavalo cavalo = (Cavalo)pecas.get(i);
+				if(cavalo.getCor() != Color.BLACK){
+					cavalo.setPodeSelecionar(true);
+				}
+				else{
+					cavalo.setPodeSelecionar(false);
+				}
+			}
+		}
+		jogadordavez.setText("Vez do jogador BRANCO");
 		this.janelaJogo.repaint();
 		this.MontaComponentes();
 		this.janelaJogo.repaint();
