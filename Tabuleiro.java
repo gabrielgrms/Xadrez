@@ -771,19 +771,17 @@ public class Tabuleiro extends JFrame {
 				JButton espaco = (JButton)c;
 				p.movimentarPeca(null,espaco, tabuleiro);
 				
-				System.out.println(r.getPosicaoXreiBranco());
-				System.out.println(r.getPosicaoYreiBranco());
-				System.out.println(r.getPosicaoXreiPreto());
-				System.out.println(r.getPosicaoYreiPreto());
-				
 				//significa que foi a vez do jogador preto jogar.
-				//verifica xeque do rei branco e preto (um movimento de peca preta pode gerar xeque-mate)
+				//verifica xeque do rei branco
 				if(p.getCor() == Color.BLACK){
 					if(r.verificarXeque(p.getPosicaox(),p.getPosicaoy(),tabuleiro,p,p.getCor())){
 	                      JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
 					}
 					
 				}
+				
+				//significa que foi a vez do jogador branco jogar.
+				//verifica xeque do rei preto
 				else{
 					if(r.verificarXeque(p.getPosicaox(),p.getPosicaoy(),tabuleiro,p,p.getCor())){
 	                      JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
@@ -794,6 +792,23 @@ public class Tabuleiro extends JFrame {
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				p.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//significa que foi a vez do jogador preto jogar.
+				//verifica xeque do rei branco
+				if(p.getCor() == Color.BLACK){
+					if(r.verificarXeque(p.getPosicaox(),p.getPosicaoy(),tabuleiro,p,p.getCor())){
+	                      JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+					}
+					
+				}
+				
+				//significa que foi a vez do jogador branco jogar.
+				//verifica xeque do rei preto
+				else{
+					if(r.verificarXeque(p.getPosicaox(),p.getPosicaoy(),tabuleiro,p,p.getCor())){
+	                      JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
 			}
 		}
 		else if(peca instanceof Rei){

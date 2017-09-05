@@ -18,6 +18,7 @@ public class Movimentacao extends MouseAdapter {
 	private Peca pecaEscolhida = null;
 	private Rei pecaRei = null;
 	
+
 	public Movimentacao(JButton espaco,Tabuleiro tabuleiro,JPanel tabuleiroJogo){
 		this.espaco = espaco;
 		this.tabuleiro = tabuleiro;
