@@ -13,6 +13,7 @@ public class Rainha extends Peca {
 	private int posicaoy;
 	private int posicaoxIni;
 	private int posicaoyIni;
+	private boolean morta = false;
 			
 	public int getPosicaoxIni() {
 		return posicaoxIni;
@@ -53,6 +54,9 @@ public class Rainha extends Peca {
 				this.cor = cor;
 				this.icon = img;
 				this.tabuleiro = tabuleiro;
+				if(this.cor == Color.BLACK){
+					this.podeSelecionar = false;
+				}
 	}
 	
 	private boolean verificaEspacoSuperior(JButton espaco,JPanel tabuleiro){
@@ -215,7 +219,7 @@ public class Rainha extends Peca {
 					//Rainha branca movimenta para cima
 					if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 					
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoSuperior(espaco,tabuleiro)){
 					
 							if(espaco.getComponentCount() == 0){
@@ -233,7 +237,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -243,7 +247,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "branco"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -255,14 +259,14 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 			
 					//rainha branca movimenta para baixo
 					else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
 						
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoInferior(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -280,7 +284,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -290,7 +294,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "branco"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -302,13 +306,13 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 		
 					//rainha branca movimenta para esquerda
 					else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -326,7 +330,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -336,7 +340,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "branco"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -348,13 +352,13 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 		
 					//rainha branca movimenta para a direita
 					else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -372,7 +376,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -382,7 +386,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "branco"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -394,7 +398,7 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 				
@@ -404,7 +408,7 @@ public class Rainha extends Peca {
 							//verifica se clicou na mesma diagonal que a rainha esta
 							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 								
-								//verifica se existe alguma peça no caminho da rainha
+								//verifica se existe alguma peÃ§a no caminho da rainha
 								if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 								
 									if(espaco.getComponentCount() == 0){
@@ -422,7 +426,7 @@ public class Rainha extends Peca {
 										JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 										espacoAntigo.remove(0);
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(true,this.cor);
 										this.tabuleiro.repaint();
 									}
 									//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -432,7 +436,7 @@ public class Rainha extends Peca {
 										//clicou num espaco que tem uma peca de mesma cor
 										if(espacoAux.getNome() == "branco"){
 											this.selecionada = false;
-											this.tabuleiro.destravaSelecao();
+											this.tabuleiro.destravaSelecao(false,this.cor);
 										}
 										
 										//clicou numa peca de outra cor para atacar
@@ -444,13 +448,13 @@ public class Rainha extends Peca {
 								//tem uma peca no caminho
 								else{
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 							}
 							//nao clicou na mesma diagonal
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 					
@@ -459,7 +463,7 @@ public class Rainha extends Peca {
 						
 						if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -477,7 +481,7 @@ public class Rainha extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -487,7 +491,7 @@ public class Rainha extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "branco"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -499,14 +503,14 @@ public class Rainha extends Peca {
 							//tem uma peca no caminho
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 						}
 						//nao clicou na mesma diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 				
@@ -514,7 +518,7 @@ public class Rainha extends Peca {
 					else if(espaco.getX() < posicaox && espaco.getY() > posicaoy){
 						if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -532,7 +536,7 @@ public class Rainha extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -542,7 +546,7 @@ public class Rainha extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "branco"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -554,13 +558,13 @@ public class Rainha extends Peca {
 							//tem uma peca no caminho
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//nao clicou na mesma diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 				
@@ -568,7 +572,7 @@ public class Rainha extends Peca {
 					else if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
 							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 								
-								//verifica se existe alguma peça no caminho da rainha
+								//verifica se existe alguma peÃ§a no caminho da rainha
 								if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 								
 									if(espaco.getComponentCount() == 0){
@@ -586,7 +590,7 @@ public class Rainha extends Peca {
 										JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 										espacoAntigo.remove(0);
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(true,this.cor);
 										this.tabuleiro.repaint();
 									}
 									//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -596,7 +600,7 @@ public class Rainha extends Peca {
 										//clicou num espaco que tem uma peca de mesma cor
 										if(espacoAux.getNome() == "branco"){
 											this.selecionada = false;
-											this.tabuleiro.destravaSelecao();
+											this.tabuleiro.destravaSelecao(false,this.cor);
 										}
 										
 										//clicou numa peca de outra cor para atacar
@@ -608,20 +612,20 @@ public class Rainha extends Peca {
 								//tem uma peca no caminho
 								else{
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 							}
 							//nao clicou na mesma diagonal
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 					}
 					//clicou numa posicao invalida
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 			
@@ -630,7 +634,7 @@ public class Rainha extends Peca {
 					//movimenta para cima
 					if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 					
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoSuperior(espaco,tabuleiro)){
 					
 							if(espaco.getComponentCount() == 0){
@@ -648,7 +652,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -658,7 +662,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -670,13 +674,13 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 			
 					//movimenta para baixo
 					else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoInferior(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -694,7 +698,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -704,7 +708,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -716,14 +720,14 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 		
 					//movimenta para esquerda
 					else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
 						
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -741,7 +745,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -751,7 +755,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -763,14 +767,14 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 		
 					//movimenta para a direita
 					else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
 						
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -788,7 +792,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -798,7 +802,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -810,7 +814,7 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 				
@@ -819,7 +823,7 @@ public class Rainha extends Peca {
 	
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -837,7 +841,7 @@ public class Rainha extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -847,7 +851,7 @@ public class Rainha extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "preto"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -859,14 +863,14 @@ public class Rainha extends Peca {
 							//tem uma peca no caminho
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 			
 						}
 						//nao clicou na mesma diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					
@@ -875,7 +879,7 @@ public class Rainha extends Peca {
 						
 						if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 													
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -893,7 +897,7 @@ public class Rainha extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -903,7 +907,7 @@ public class Rainha extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "preto"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -915,13 +919,13 @@ public class Rainha extends Peca {
 							//tem uma peca no caminho
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//nao clicou na mesma diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					
@@ -930,7 +934,7 @@ public class Rainha extends Peca {
 						
 						if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -948,7 +952,7 @@ public class Rainha extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -958,7 +962,7 @@ public class Rainha extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "preto"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -970,13 +974,13 @@ public class Rainha extends Peca {
 							//tem uma peca no caminho
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//nao clicou na mesma diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					
@@ -985,7 +989,7 @@ public class Rainha extends Peca {
 	
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -1003,7 +1007,7 @@ public class Rainha extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1013,7 +1017,7 @@ public class Rainha extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "preto"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -1025,13 +1029,13 @@ public class Rainha extends Peca {
 							//tem uma peca no caminho
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//nao clicou na mesma diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 			}
@@ -1044,7 +1048,7 @@ public class Rainha extends Peca {
 				//Rainha branca movimenta para cima
 				if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 				
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoSuperior(espaco,tabuleiro)){
 				
 						if(espaco.getComponentCount() == 0){
@@ -1062,7 +1066,7 @@ public class Rainha extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1072,7 +1076,7 @@ public class Rainha extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -1084,14 +1088,14 @@ public class Rainha extends Peca {
 					//tem uma peca no caminho
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 		
 				//rainha branca movimenta para baixo
 				else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
 					
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoInferior(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1109,7 +1113,7 @@ public class Rainha extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1119,7 +1123,7 @@ public class Rainha extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -1131,13 +1135,13 @@ public class Rainha extends Peca {
 					//tem uma peca no caminho
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 	
 				//rainha branca movimenta para esquerda
 				else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1155,7 +1159,7 @@ public class Rainha extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1165,7 +1169,7 @@ public class Rainha extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -1177,13 +1181,13 @@ public class Rainha extends Peca {
 					//tem uma peca no caminho
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 	
 				//rainha branca movimenta para a direita
 				else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1201,7 +1205,7 @@ public class Rainha extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1211,7 +1215,7 @@ public class Rainha extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -1223,7 +1227,7 @@ public class Rainha extends Peca {
 					//tem uma peca no caminho
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 			
@@ -1233,7 +1237,7 @@ public class Rainha extends Peca {
 						//verifica se clicou na mesma diagonal que a rainha esta
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -1251,7 +1255,7 @@ public class Rainha extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1261,7 +1265,7 @@ public class Rainha extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "branco"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -1273,13 +1277,13 @@ public class Rainha extends Peca {
 							//tem uma peca no caminho
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//nao clicou na mesma diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 				
@@ -1288,7 +1292,7 @@ public class Rainha extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1306,7 +1310,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1316,7 +1320,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "branco"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -1328,14 +1332,14 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 						
 					}
 					//nao clicou na mesma diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 			
@@ -1343,7 +1347,7 @@ public class Rainha extends Peca {
 				else if(espaco.getX() < posicaox && espaco.getY() > posicaoy){
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1361,7 +1365,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1371,7 +1375,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "branco"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -1383,13 +1387,13 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					//nao clicou na mesma diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 			
@@ -1397,7 +1401,7 @@ public class Rainha extends Peca {
 				else if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -1415,7 +1419,7 @@ public class Rainha extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1425,7 +1429,7 @@ public class Rainha extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "branco"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -1437,20 +1441,20 @@ public class Rainha extends Peca {
 							//tem uma peca no caminho
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//nao clicou na mesma diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 						
 				}
 				//clicou numa posicao invalida
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
+					this.tabuleiro.destravaSelecao(false,this.cor);
 				}
 			}
 		
@@ -1459,7 +1463,7 @@ public class Rainha extends Peca {
 				//movimenta para cima
 				if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 				
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoSuperior(espaco,tabuleiro)){
 				
 						if(espaco.getComponentCount() == 0){
@@ -1477,7 +1481,7 @@ public class Rainha extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1487,7 +1491,7 @@ public class Rainha extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "preto"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -1499,13 +1503,13 @@ public class Rainha extends Peca {
 					//tem uma peca no caminho
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 		
 				//movimenta para baixo
 				else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoInferior(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1523,7 +1527,7 @@ public class Rainha extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1533,7 +1537,7 @@ public class Rainha extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "preto"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -1545,14 +1549,14 @@ public class Rainha extends Peca {
 					//tem uma peca no caminho
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 	
 				//movimenta para esquerda
 				else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
 					
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1570,7 +1574,7 @@ public class Rainha extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1580,7 +1584,7 @@ public class Rainha extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "preto"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -1592,14 +1596,14 @@ public class Rainha extends Peca {
 					//tem uma peca no caminho
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 	
 				//movimenta para a direita
 				else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
 					
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1617,7 +1621,7 @@ public class Rainha extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1627,7 +1631,7 @@ public class Rainha extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "preto"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -1639,7 +1643,7 @@ public class Rainha extends Peca {
 					//tem uma peca no caminho
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 			
@@ -1648,7 +1652,7 @@ public class Rainha extends Peca {
 
 					if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1666,7 +1670,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1676,7 +1680,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -1688,14 +1692,14 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 		
 					}
 					//nao clicou na mesma diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 				
@@ -1704,7 +1708,7 @@ public class Rainha extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 												
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1722,7 +1726,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1732,7 +1736,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -1744,13 +1748,13 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					//nao clicou na mesma diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 				
@@ -1759,7 +1763,7 @@ public class Rainha extends Peca {
 					
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1777,7 +1781,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1787,7 +1791,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -1799,13 +1803,13 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					//nao clicou na mesma diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 				
@@ -1814,7 +1818,7 @@ public class Rainha extends Peca {
 
 					if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1832,7 +1836,7 @@ public class Rainha extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -1842,7 +1846,7 @@ public class Rainha extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -1854,13 +1858,13 @@ public class Rainha extends Peca {
 						//tem uma peca no caminho
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					//nao clicou na mesma diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 			}
@@ -1874,6 +1878,7 @@ public class Rainha extends Peca {
 			if(this.cor == Color.BLACK){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1892,12 +1897,13 @@ public class Rainha extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.repaint();
 			}
 			else if(this.cor == Color.WHITE){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1916,7 +1922,7 @@ public class Rainha extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.repaint();
 			}
 		}
@@ -1926,6 +1932,7 @@ public class Rainha extends Peca {
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1947,13 +1954,14 @@ public class Rainha extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.repaint();
 				
 			}
 			else if(this.cor == Color.WHITE){
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1975,18 +1983,27 @@ public class Rainha extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.repaint();
 			}
 		}
 	}
 	
+	public boolean isMorta() {
+		return morta;
+	}
+
+	public void setMorta(boolean morta) {
+		this.morta = morta;
+	}
+
 	public void mouseClicked(MouseEvent e){
-		
-		if(this.selecionada){	
+		if(this.morta){
+		}
+		else if(this.selecionada){	
 			this.desativaHighlight();
 			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
+			this.tabuleiro.destravaSelecao(false,this.cor);
 		}
 		else if(podeSelecionar){
 			this.ativaHighlight();
@@ -2036,6 +2053,14 @@ public class Rainha extends Peca {
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
 	}
+
+	public Color getCor() {
+		return cor;
+	}
+
+	public void setCor(Color cor) {
+		this.cor = cor;
+	}
 	
 	public void desativaHighlight(){
 		//desativa o highlight
@@ -2074,7 +2099,5 @@ public class Rainha extends Peca {
 			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
 		}
 	}
+	
 }
-
-
-

@@ -19,6 +19,14 @@ public class Peao extends Peca {
 	private Color cor;
 	private boolean podeSelecionar = true;
 	private boolean selecionada = false;
+	private boolean morta = false;
+	
+	public boolean isMorta() {
+		return morta;
+	}
+	public void setMorta(boolean morta) {
+		this.morta = morta;
+	}
 	public int getPosicaoxIni() {
 		return posicaoxIni;
 	}
@@ -42,16 +50,19 @@ public class Peao extends Peca {
 		this.cor = cor;
 		this.icon = img;
 		this.tabuleiro = tabuleiro;
+		if(this.cor == Color.BLACK){
+			this.podeSelecionar = false;
+		}
 	}
 	public void usarJogadaEspecial(JPanel tabuleiro) {
 		if(this.cor == Color.WHITE && posicaoy == 50){
-			this.pecaMorta = true;
 			this.tabuleiro.getPecasForaDoJogo().add(this);
 			Icon imgRainha = new ImageIcon("image/rainhaBranco.png");
 			JLabel imgRainhaEspecial = new JLabel(imgRainha);
 			Rainha rainhaEspecial = new Rainha(posicaox, posicaoy,this.cor,imgRainhaEspecial,this.tabuleiro);
 			imgRainhaEspecial.addMouseListener(rainhaEspecial);
 			this.tabuleiro.getPecas().add(rainhaEspecial);
+			new PecaMorta().check(this);
 			JButton espaco = (JButton) tabuleiro.getComponentAt(posicaox+50, posicaoy);
 			tabuleiro.remove(espaco);
 			imgRainhaEspecial.setBounds(posicaox, posicaoy, 50, 50);
@@ -63,13 +74,13 @@ public class Peao extends Peca {
 			this.tabuleiro.atualizarTabuleiro();
 		}
 		else if(this.cor == Color.BLACK && posicaoy == 470){
-			this.pecaMorta = true;
 			this.tabuleiro.getPecasForaDoJogo().add(this);
 			Icon imgRainha = new ImageIcon("image/rainhaPreto.png");
 			JLabel imgRainhaEspecial = new JLabel(imgRainha);
 			Rainha rainhaEspecial = new Rainha(posicaox, posicaoy,this.cor,imgRainhaEspecial,this.tabuleiro);
 			imgRainhaEspecial.addMouseListener(rainhaEspecial);
 			this.tabuleiro.getPecas().add(rainhaEspecial);
+      new PecaMorta().check(this);
 			JButton espaco = (JButton) tabuleiro.getComponentAt(posicaox+50, posicaoy);
 			tabuleiro.remove(espaco);
 			imgRainhaEspecial.setBounds(posicaox, posicaoy, 50, 50);
@@ -85,15 +96,10 @@ public class Peao extends Peca {
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 		this.desativaHighlight();
-			if(pecaMorta){
-				JOptionPane.showMessageDialog(null,"Esta peça esta fora do jogo","Movimento Invalido",JOptionPane.INFORMATION_MESSAGE);
-				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
-			}
 			//Realiza o movimento caso tenha clicado num espaço
-			else if(espaco!=null && pecaNaFrente == null){
+			if(espaco!=null && pecaNaFrente == null){
 				if(this.cor == Color.WHITE){
-					if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy-60 == espaco.getY()  && espaco.getComponentCount() != 0){
+					if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy-60 == espaco.getY()){
 						atacarPeca(null,espaco,tabuleiro);
 						usarJogadaEspecial(tabuleiro);
 					}
@@ -108,7 +114,7 @@ public class Peao extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy+60);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.atualizarTabuleiro();
 						}
 						else if(posicaoy - 120 == espaco.getY() && posicaox == espaco.getX() && espaco.getComponentCount() == 0){
@@ -120,12 +126,12 @@ public class Peao extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy+120);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.atualizarTabuleiro();
 						}
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					//2 movimento em diante
@@ -139,13 +145,13 @@ public class Peao extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy+60);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true,this.cor);
 							this.tabuleiro.atualizarTabuleiro();
 							usarJogadaEspecial(tabuleiro);
 						}
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 				}
@@ -166,7 +172,7 @@ public class Peao extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy-60);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.atualizarTabuleiro();
 							}
 							else if(posicaoy + 120 == espaco.getY() && posicaox == espaco.getX() && espaco.getComponentCount() == 0){
@@ -178,12 +184,12 @@ public class Peao extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy-120);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.atualizarTabuleiro();
 							}
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//2 movimento em diante
@@ -197,13 +203,13 @@ public class Peao extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy-60);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.atualizarTabuleiro();
 								usarJogadaEspecial(tabuleiro);
 							}
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 					}
@@ -219,7 +225,7 @@ public class Peao extends Peca {
 				//Se tiver uma peça na frente, deseleciona
 				else if(pecaNaFrente!=null){
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
+					this.tabuleiro.destravaSelecao(false,this.cor);
 				}
 	}
 
@@ -243,11 +249,12 @@ public class Peao extends Peca {
 				tabuleiro.remove(espaco);
 				JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(espaco.getX(), espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);	Peca p = (Peca)pecaComida.getMouseListeners()[0];
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaco);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.atualizarTabuleiro();
 			}
 			//Peao preto ataca a peca caso o espaco tenha sido clicado e contenha uma peca branca
@@ -267,13 +274,13 @@ public class Peao extends Peca {
 					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-60, posicaoy-60);
 				}
 				tabuleiro.remove(espaco);
-				System.out.println(pecaComida.getMouseListeners()[0]);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaco);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.atualizarTabuleiro();
 			}
 		}
@@ -297,11 +304,12 @@ public class Peao extends Peca {
 				tabuleiro.remove(espaconovo);
 				JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(pecaNaFrente.getX(), pecaNaFrente.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaconovo);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.atualizarTabuleiro();
 			}
 		}
@@ -325,27 +333,30 @@ public class Peao extends Peca {
 				}
 				tabuleiro.remove(espaconovo);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]); 
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaconovo);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.atualizarTabuleiro();
 			}
 		}
 		else{
 			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
+			this.tabuleiro.destravaSelecao(false,this.cor);
 		}
 	}
 
 
+
 	public void mouseClicked(MouseEvent e){
-		
-		if(this.selecionada){
+		if(this.morta){
+		}
+		else if(this.selecionada){
 			this.desativaHighlight();
 			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
+			this.tabuleiro.destravaSelecao(false,this.cor);
 		}
 		else if(podeSelecionar){
 			this.ativaHighlight();
@@ -358,9 +369,14 @@ public class Peao extends Peca {
 			barraPeca.setPecaBarra(this.icon);
 			barraPeca.mouseClicked(e);
 		}
-		System.out.println(this.selecionada);
 	}
 	
+	public Color getCor() {
+		return cor;
+	}
+	public void setCor(Color cor) {
+		this.cor = cor;
+	}
 	public boolean getSelecionada(){
 		return this.selecionada;
 	}
@@ -388,6 +404,7 @@ public class Peao extends Peca {
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
 	}
+	
 	public void desativaHighlight(){
 		//desativa o highlight
 		//verifica se o espaco clicado eh branco

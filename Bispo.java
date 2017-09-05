@@ -14,6 +14,7 @@ public class Bispo extends Peca {
 	private int posicaoy;
 	private int posicaoxIni;
 	private int posicaoyIni;
+	private boolean morta = false;
 	public int getPosicaoxIni() {
 		return posicaoxIni;
 	}
@@ -53,6 +54,9 @@ public class Bispo extends Peca {
 			this.cor = cor;
 			this.icon = img;
 			this.tabuleiro = tabuleiro;
+			if(this.cor == Color.BLACK){
+				this.podeSelecionar = false;
+			}
 	}
 	
 	private boolean verificaEspacoSuperiorEsquerda(JButton espaco,JPanel tabuleiro){
@@ -151,7 +155,7 @@ public class Bispo extends Peca {
 							//verifica se clicou na mesma diagonal que o bispo esta
 							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 								
-								//verifica se existe alguma peça no caminho do bispo
+								//verifica se existe alguma peÃ§a no caminho do bispo
 								if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 									//eh um movimento
 									if(espaco.getComponentCount() == 0){
@@ -170,7 +174,7 @@ public class Bispo extends Peca {
 										JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 										espacoAntigo.remove(0);
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(true,this.cor);
 										this.tabuleiro.repaint();
 									}
 									//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -180,7 +184,7 @@ public class Bispo extends Peca {
 										//clicou num espaco que tem uma peca de mesma cor
 										if(espacoAux.getNome() == "branco"){
 											this.selecionada = false;
-											this.tabuleiro.destravaSelecao();
+											this.tabuleiro.destravaSelecao(false,this.cor);
 										}
 										
 										//clicou numa peca de outra cor para atacar
@@ -192,13 +196,13 @@ public class Bispo extends Peca {
 								//tem uma peca no caminho do bispo
 								else{
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 							}
 							//o bispo nao clicou em sua diagonal
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						
@@ -207,7 +211,7 @@ public class Bispo extends Peca {
 						
 						if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
@@ -225,7 +229,7 @@ public class Bispo extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -235,7 +239,7 @@ public class Bispo extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "branco"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -247,14 +251,14 @@ public class Bispo extends Peca {
 							//tem uma peca no caminho do bispo
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					
@@ -263,7 +267,7 @@ public class Bispo extends Peca {
 
 						if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
@@ -281,7 +285,7 @@ public class Bispo extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -291,7 +295,7 @@ public class Bispo extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "branco"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -304,13 +308,13 @@ public class Bispo extends Peca {
 							//tem uma peca no caminho do bispo
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					
@@ -319,7 +323,7 @@ public class Bispo extends Peca {
 						
 							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 								
-								//verifica se existe alguma peça no caminho do bispo
+								//verifica se existe alguma peÃ§a no caminho do bispo
 								if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 									//eh um movimento
 									if(espaco.getComponentCount() == 0){
@@ -337,7 +341,7 @@ public class Bispo extends Peca {
 										JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 										espacoAntigo.remove(0);
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(true,this.cor);
 										this.tabuleiro.repaint();
 									}
 									//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -347,7 +351,7 @@ public class Bispo extends Peca {
 										//clicou num espaco que tem uma peca de mesma cor
 										if(espacoAux.getNome() == "branco"){
 											this.selecionada = false;
-											this.tabuleiro.destravaSelecao();
+											this.tabuleiro.destravaSelecao(false,this.cor);
 										}
 										
 										//clicou numa peca de outra cor para atacar
@@ -359,13 +363,13 @@ public class Bispo extends Peca {
 								//tem uma peca no caminho do bispo
 								else{
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 							}
 							//o bispo nao clicou em sua diagonal
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 			}
@@ -376,7 +380,7 @@ public class Bispo extends Peca {
 						//verifica se clicou na mesma diagonal que o bispo esta
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
@@ -395,7 +399,7 @@ public class Bispo extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -405,7 +409,7 @@ public class Bispo extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "preto"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -417,13 +421,13 @@ public class Bispo extends Peca {
 							//tem uma peca no caminho do bispo
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					
@@ -432,7 +436,7 @@ public class Bispo extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 						
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							//eh um movimento
 							if(espaco.getComponentCount() == 0){
@@ -450,7 +454,7 @@ public class Bispo extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -460,7 +464,7 @@ public class Bispo extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -472,14 +476,14 @@ public class Bispo extends Peca {
 						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 						
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 				
@@ -488,7 +492,7 @@ public class Bispo extends Peca {
 
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							//eh um movimento
 							if(espaco.getComponentCount() == 0){
@@ -506,7 +510,7 @@ public class Bispo extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true,this.cor);
 								this.tabuleiro.repaint();
 							}
 							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -516,7 +520,7 @@ public class Bispo extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -529,13 +533,13 @@ public class Bispo extends Peca {
 						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 				
@@ -544,7 +548,7 @@ public class Bispo extends Peca {
 					
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
@@ -562,7 +566,7 @@ public class Bispo extends Peca {
 									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 									espacoAntigo.remove(0);
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(true,this.cor);
 									this.tabuleiro.repaint();
 								}
 								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -572,7 +576,7 @@ public class Bispo extends Peca {
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "preto"){
 										this.selecionada = false;
-										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.destravaSelecao(false,this.cor);
 									}
 									
 									//clicou numa peca de outra cor para atacar
@@ -584,13 +588,13 @@ public class Bispo extends Peca {
 							//tem uma peca no caminho do bispo
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 			}
@@ -606,7 +610,7 @@ public class Bispo extends Peca {
 						//verifica se clicou na mesma diagonal que o bispo esta
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 								
 								Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -614,7 +618,7 @@ public class Bispo extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "branco"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -625,13 +629,13 @@ public class Bispo extends Peca {
 							//tem uma peca no caminho do bispo
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 				}
 				
@@ -640,14 +644,14 @@ public class Bispo extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 						
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
 							
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -658,13 +662,13 @@ public class Bispo extends Peca {
 						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 				
@@ -673,14 +677,14 @@ public class Bispo extends Peca {
 
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
 							
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -691,13 +695,13 @@ public class Bispo extends Peca {
 						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 				
@@ -706,14 +710,14 @@ public class Bispo extends Peca {
 					
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 								Espaco espacoAux = (Espaco) espaco.getComponent(0);
 								
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "branco"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -724,18 +728,18 @@ public class Bispo extends Peca {
 							//tem uma peca no caminho do bispo
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 				}
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
+					this.tabuleiro.destravaSelecao(false,this.cor);
 				}				
 			}
 			else if(this.cor == Color.BLACK){
@@ -744,7 +748,7 @@ public class Bispo extends Peca {
 						//verifica se clicou na mesma diagonal que o bispo esta
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 								
 								Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -752,7 +756,7 @@ public class Bispo extends Peca {
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -763,13 +767,13 @@ public class Bispo extends Peca {
 							//tem uma peca no caminho do bispo
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 				}
 				
@@ -778,14 +782,14 @@ public class Bispo extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 						
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
 							
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "preto"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -796,13 +800,13 @@ public class Bispo extends Peca {
 						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 				
@@ -811,14 +815,14 @@ public class Bispo extends Peca {
 
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 
-						//verifica se existe alguma peça no caminho do bispo
+						//verifica se existe alguma peÃ§a no caminho do bispo
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
 							
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "preto"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -829,13 +833,13 @@ public class Bispo extends Peca {
 						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.destravaSelecao(false,this.cor);
 					}
 				}
 				
@@ -844,14 +848,14 @@ public class Bispo extends Peca {
 					
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 							
-							//verifica se existe alguma peça no caminho do bispo
+							//verifica se existe alguma peÃ§a no caminho do bispo
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 								Espaco espacoAux = (Espaco) espaco.getComponent(0);
 								
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
 									this.selecionada = false;
-									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.destravaSelecao(false,this.cor);
 								}
 								
 								//clicou numa peca de outra cor para atacar
@@ -862,18 +866,18 @@ public class Bispo extends Peca {
 							//tem uma peca no caminho do bispo
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false,this.cor);
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false,this.cor);
 						}
 				}
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
+					this.tabuleiro.destravaSelecao(false,this.cor);
 				}
 			}
 		}
@@ -886,6 +890,7 @@ public class Bispo extends Peca {
 			if(this.cor == Color.BLACK){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -904,12 +909,13 @@ public class Bispo extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.repaint();
 			}
 			else if(this.cor == Color.WHITE){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -928,7 +934,7 @@ public class Bispo extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.repaint();
 			}
 		}
@@ -938,6 +944,7 @@ public class Bispo extends Peca {
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -959,13 +966,14 @@ public class Bispo extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.repaint();
 				
 			}
 			else if(this.cor == Color.WHITE){
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -987,18 +995,19 @@ public class Bispo extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.repaint();
 			}
 		}
 	}
 	
 public void mouseClicked(MouseEvent e){
-		
-		if(this.selecionada){		
+		if(this.morta){
+		}
+		else if(this.selecionada){		
 			this.desativaHighlight();
 			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
+			this.tabuleiro.destravaSelecao(false,this.cor);
 		}
 		else if(podeSelecionar){
 			this.ativaHighlight();
@@ -1048,6 +1057,14 @@ public void mouseClicked(MouseEvent e){
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
 	}
+
+	public Color getCor() {
+		return cor;
+	}
+
+	public void setCor(Color cor) {
+		this.cor = cor;
+	}
 	
 	public void desativaHighlight(){
 		//desativa o highlight
@@ -1086,5 +1103,5 @@ public void mouseClicked(MouseEvent e){
 			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
 		}
 	}
-
+	
 }

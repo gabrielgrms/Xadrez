@@ -5,13 +5,33 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public abstract class Peca extends MouseAdapter {
 
 	private Color cor;
 	private boolean selecionada = false;
 	private boolean podeSelecionar = true;
-	String tipo;
+	private boolean morta = false;
+	private String tipo;
+	
+	public boolean isMorta() {
+		return morta;
+	}
+	
+	//seta o tipo de peça que sera construida
+	public void setTipo(String tipo){
+		this.tipo = tipo;
+	}
+	
+	//retorna o tipo da peca
+	public String getTipo(){
+		return tipo;
+	}
+
+	public void setMorta(boolean morta) {
+		this.morta = morta;
+	}
 
 	public void movimentarPeca() {
 
@@ -29,21 +49,17 @@ public abstract class Peca extends MouseAdapter {
 		this.selecionada = selecionada;
 	}
 
-	public boolean isPodeSelecionar() {
+	public boolean podeSelecionar() {
 		return podeSelecionar;
 	}
 
 	public void setPodeSelecionar(boolean podeSelecionar) {
 		this.podeSelecionar = podeSelecionar;
 	}
-	
-	//seta o tipo de peça que sera construida
-	public void setTipo(String tipo){
-		this.tipo = tipo;
+
+	public Color getCor() {
+		return cor;
 	}
 	
-	public String getTipo(){
-		return tipo;
-	}
 	
 }
