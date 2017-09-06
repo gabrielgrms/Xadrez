@@ -1370,7 +1370,8 @@ public class Rei extends Peca {
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao(false,this.cor);
 		}
-		else if(podeSelecionar){	
+		else if(podeSelecionar){
+			this.ativaHighlight();
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
