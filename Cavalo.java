@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 public class Cavalo extends Peca {
 	//posicao da peca selecionada
-	private int posicaox;
-	private int posicaoy;
+	private  int posicaox;
+	private  int posicaoy;
 	private int posicaoxIni;
 	private int posicaoyIni;
 	private boolean morta = false;

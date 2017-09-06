@@ -60,6 +60,176 @@ public class Rei extends Peca {
 			this.podeSelecionar = false;
 		}
 	}
+	
+	private boolean verificaEspacoSuperiorEsquerda(int posicaoXpeca,int posicaoYpeca,JPanel tabuleiro,Color cor){
+		
+		//a peca que esta na direcao do rei eh branca
+		if(cor == Color.WHITE){
+			while(posicaoXpeca - 60 != this.getPosicaoXreiPreto() && posicaoYpeca - 60 != this.getPosicaoYreiPreto()){
+				if(tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca - 60)instanceof JLabel ){
+					return false;
+				}
+				else if(tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca - 60)instanceof JButton){
+					
+					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca - 60);
+			
+					if(espacoAux.getComponentCount() != 0){
+						return false;
+					}
+				}
+				posicaoXpeca = posicaoXpeca - 60;
+				posicaoYpeca = posicaoYpeca - 60;
+			}
+			return true;
+		}
+		
+		//a peca que esta na direcao do rei eh preta
+		if(cor == Color.BLACK){
+			while(posicaoXpeca - 60 != this.getPosicaoXreiBranco() && posicaoYpeca - 60 != this.getPosicaoYreiBranco()){
+				if(tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca - 60)instanceof JLabel ){
+					return false;
+				}
+				else if(tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca - 60)instanceof JButton){
+					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca - 60);
+			
+					if(espacoAux.getComponentCount() != 0){
+						return false;
+					}
+				}
+				posicaoXpeca = posicaoXpeca - 60;
+				posicaoYpeca = posicaoYpeca - 60;
+			}
+			return true;
+		}
+		return false;
+}
+	
+	private boolean verificaEspacoSuperiorDireita(int posicaoXpeca,int posicaoYpeca,JPanel tabuleiro,Color cor){
+		
+		//a peca que esta na direcao do rei eh branca
+		if(cor == Color.WHITE){
+			while(posicaoXpeca + 60 != this.getPosicaoXreiPreto() && posicaoYpeca - 60 != this.getPosicaoYreiPreto()){
+				if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca - 60)instanceof JLabel ){
+					return false;
+				}
+				else if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca - 60)instanceof JButton){
+					
+					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca - 60);
+			
+					if(espacoAux.getComponentCount() != 0){
+						return false;
+					}
+				}
+				posicaoXpeca = posicaoXpeca + 60;
+				posicaoYpeca = posicaoYpeca - 60;
+			}
+			return true;
+		}
+		
+		//a peca que esta na direcao do rei eh preta
+		if(cor == Color.BLACK){
+			while(posicaoXpeca + 60 != this.getPosicaoXreiBranco() && posicaoYpeca - 60 != this.getPosicaoYreiBranco()){
+				if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca - 60)instanceof JLabel ){
+					return false;
+				}
+				else if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca - 60)instanceof JButton){
+					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca - 60);
+			
+					if(espacoAux.getComponentCount() != 0){
+						return false;
+					}
+				}
+				posicaoXpeca = posicaoXpeca + 60;
+				posicaoYpeca = posicaoYpeca - 60;
+			}
+			return true;
+		}
+		return false;
+}
+
+	private boolean verificaEspacoInferiorDireita(int posicaoXpeca,int posicaoYpeca,JPanel tabuleiro,Color cor){
+		//a peca que esta na direcao do rei eh branca
+		if(cor == Color.WHITE){
+			while(posicaoXpeca + 60 != this.getPosicaoXreiPreto() && posicaoYpeca + 60 != this.getPosicaoYreiPreto()){
+				if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca + 60)instanceof JLabel ){
+					return false;
+				}
+				else if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca + 60)instanceof JButton){
+					
+					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca + 60);
+			
+					if(espacoAux.getComponentCount() != 0){
+						return false;
+					}
+				}
+				posicaoXpeca = posicaoXpeca + 60;
+				posicaoYpeca = posicaoYpeca + 60;
+			}
+			return true;
+		}
+		
+		//a peca que esta na direcao do rei eh preta
+		if(cor == Color.BLACK){
+			while(posicaoXpeca + 60 != this.getPosicaoXreiBranco() && posicaoYpeca + 60 != this.getPosicaoYreiBranco()){
+				if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca + 60)instanceof JLabel ){
+					return false;
+				}
+				else if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca + 60)instanceof JButton){
+					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca + 60);
+			
+					if(espacoAux.getComponentCount() != 0){
+						return false;
+					}
+				}
+				posicaoXpeca = posicaoXpeca + 60;
+				posicaoYpeca = posicaoYpeca + 60;
+			}
+			return true;
+		}
+		return false;
+	}
+
+	private boolean verificaEspacoInferiorEsquerda(int posicaoXpeca,int posicaoYpeca,JPanel tabuleiro,Color cor){
+		//a peca que esta na direcao do rei eh branca
+		if(cor == Color.WHITE){
+			while(posicaoXpeca - 60 != this.getPosicaoXreiPreto() && posicaoYpeca + 60 != this.getPosicaoYreiPreto()){
+				if(tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca + 60)instanceof JLabel ){
+					return false;
+				}
+				else if(tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca + 60)instanceof JButton){
+					
+					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca + 60);
+			
+					if(espacoAux.getComponentCount() != 0){
+						return false;
+					}
+				}
+				posicaoXpeca = posicaoXpeca - 60;
+				posicaoYpeca = posicaoYpeca + 60;
+			}
+			return true;
+		}
+		
+		//a peca que esta na direcao do rei eh preta
+		if(cor == Color.BLACK){
+			while(posicaoXpeca - 60 != this.getPosicaoXreiBranco() && posicaoYpeca + 60 != this.getPosicaoYreiBranco()){
+				if(tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca + 60)instanceof JLabel ){
+					return false;
+				}
+				else if(tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca + 60)instanceof JButton){
+					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca - 60, posicaoYpeca + 60);
+			
+					if(espacoAux.getComponentCount() != 0){
+						return false;
+					}
+				}
+				posicaoXpeca = posicaoXpeca - 60;
+				posicaoYpeca = posicaoYpeca + 60;
+			}
+			return true;
+		}
+		return false;
+	}
 
 	public boolean verificarXeque(int posicaoXpeca,int posicaoYpeca, JPanel tabuleiro,Peca peca, Color cor) {
 		int x,y;
@@ -69,23 +239,14 @@ public class Rei extends Peca {
 			
 			//verifica se o peao esta dando xeque no rei (peao so ataca pelas diagonais e de uma em uma celula)
 			if(peca.getTipo().equals("peao")){
-
-				//rei esta na diagonal superior esquerda do peao
-				if(posicaoXpeca < this.getPosicaoXreiPreto() && posicaoYpeca < this.getPosicaoYreiPreto()
-						&& ( this.getPosicaoXreiPreto() - posicaoXpeca) == 60 && (this.getPosicaoYreiPreto() - posicaoYpeca) == 60)
-					return true;
 				
-				//rei esta na diagonal inferior direita do peao
+				
+				//rei esta na diagonal superior direita do peao
 				if(posicaoXpeca > this.getPosicaoXreiPreto() && posicaoYpeca > this.getPosicaoYreiPreto()
 						&& (posicaoXpeca - this.getPosicaoXreiPreto()) == 60 && (posicaoYpeca - this.getPosicaoYreiPreto()) == 60)
 					return true;
 				
-				//rei esta na diagonal superior direita do peao
-				if(posicaoXpeca > this.getPosicaoXreiPreto() && posicaoYpeca < this.getPosicaoYreiPreto()
-						&& (posicaoXpeca - this.getPosicaoXreiPreto()) == 60 && (this.getPosicaoYreiPreto() - posicaoYpeca) == 60)
-					return true;
-				
-				//rei esta na diagonal inferior esquerda do peao
+				//rei esta na diagonal superior esquerda do peao
 				if(posicaoXpeca < this.getPosicaoXreiPreto() && posicaoYpeca > this.getPosicaoYreiPreto()
 						&& (this.getPosicaoXreiPreto() - posicaoXpeca) == 60 && (posicaoYpeca - this.getPosicaoYreiPreto()) == 60)
 					return true;
@@ -100,6 +261,63 @@ public class Rei extends Peca {
 			
 			//verifica se o bispo esta dando xeque no rei (bispo ataca pelas diagonais)
 			else if(peca.getTipo().equals("bispo")){
+				
+				//diagonal superior esquerda
+				if(this.getPosicaoXreiPreto() < posicaoXpeca && this.getPosicaoYreiPreto() < posicaoYpeca){
+						//verifica se o rei esta na mesma diagonal que o bispo
+						if((this.getPosicaoXreiPreto() - posicaoXpeca) == (this.getPosicaoYreiPreto() - posicaoYpeca)){
+							
+							//verifica se existe alguma peca no caminho do bispo
+							if(verificaEspacoSuperiorEsquerda(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+								return true;
+							}
+							return false;
+						}
+						return false;
+				}
+				
+				//diagonal superior direita
+				else if(this.getPosicaoXreiPreto() > posicaoXpeca && this.getPosicaoYreiPreto() < posicaoYpeca){
+					//verifica se o rei esta na mesma diagonal que o bispo
+					if((this.getPosicaoXreiPreto() - posicaoXpeca) == (posicaoYpeca - this.getPosicaoYreiPreto())){
+						
+						//verifica se existe alguma peca no caminho do bispo
+						if(verificaEspacoSuperiorDireita(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+							return true;
+						}
+						return false;
+					}
+					return false;
+				}
+				
+				//diagonal inferior esquerda
+				else if(this.getPosicaoXreiPreto() < posicaoXpeca && this.getPosicaoYreiPreto() > posicaoYpeca){
+					//verifica se o rei esta na mesma diagonal que o bispo
+					if((posicaoXpeca - this.getPosicaoXreiPreto()) == (this.getPosicaoYreiPreto() - posicaoYpeca)){
+
+						//verifica se existe alguma peca no caminho do bispo
+						if(verificaEspacoInferiorEsquerda(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+							return true;
+						}
+						return false;
+					}
+					return false;
+				}
+				
+				//diagonal inferior direita
+				else if(this.getPosicaoXreiPreto() > posicaoXpeca && this.getPosicaoYreiPreto() > posicaoYpeca){
+					
+						if((this.getPosicaoXreiPreto() - posicaoXpeca) == (this.getPosicaoYreiPreto() - posicaoYpeca) ){
+							
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoInferiorDireita(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+								return true;
+							}
+							return false;
+						}
+						return false;
+				}
+				return false;
 				
 			}
 			
@@ -123,28 +341,19 @@ public class Rei extends Peca {
 		
 		//verifica se a peca (preta) que movimentou esta deixando o rei (branco) em xeque
 		else if(cor == Color.BLACK){
-			
+			//System.out.println("entrou");
 			//verifica se o peao esta dando xeque no rei (peao so ataca pelas diagonais e de uma em uma celula)
 			if(peca.getTipo().equals("peao")){
 				
-				//rei esta na diagonal superior esquerda do peao
+				//rei esta na diagonal inferior esquerda do peao
 				if(posicaoXpeca < this.getPosicaoXreiBranco() && posicaoYpeca < this.getPosicaoYreiBranco()
 						&& (this.getPosicaoXreiBranco() - posicaoXpeca) == 60 && (this.getPosicaoYreiBranco() - posicaoYpeca) == 60)
 					return true;
 				
-				//rei esta na diagonal inferior direita do peao
-				if(posicaoXpeca > this.getPosicaoXreiBranco() && posicaoYpeca > this.getPosicaoYreiBranco()
-						&& (posicaoXpeca - this.getPosicaoXreiBranco()) == 60 && (posicaoYpeca - this.getPosicaoYreiBranco()) == 60)
-					return true;
 				
-				//rei esta na diagonal superior direita do peao
+				//rei esta na diagonal inferior direita do peao
 				if(posicaoXpeca > this.getPosicaoXreiBranco() && posicaoYpeca < this.getPosicaoYreiBranco()
 						&& (posicaoXpeca - this.getPosicaoXreiBranco()) == 60 && (this.getPosicaoYreiBranco() - posicaoYpeca) == 60)
-					return true;
-				
-				//rei esta na diagonal inferior esquerda do peao
-				if(posicaoXpeca < this.getPosicaoXreiBranco() && posicaoYpeca > this.getPosicaoYreiBranco()
-						&& (this.getPosicaoXreiBranco() - posicaoXpeca) == 60 && (posicaoYpeca - this.getPosicaoYreiBranco()) == 60)
 					return true;
 				
 				return false;
@@ -157,7 +366,62 @@ public class Rei extends Peca {
 			
 			//verifica se o bispo esta dando xeque no rei (bispo ataca pelas diagonais)
 			else if(peca.getTipo().equals("bispo")){
+				//diagonal superior esquerda
+				if(this.getPosicaoXreiBranco() < posicaoXpeca && this.getPosicaoYreiBranco() < posicaoYpeca){
+						//verifica se o rei esta na mesma diagonal que o bispo
+						if((this.getPosicaoXreiBranco() - posicaoXpeca) == (this.getPosicaoYreiBranco() - posicaoYpeca)){
+							
+							//verifica se existe alguma peca no caminho do bispo
+							if(verificaEspacoSuperiorEsquerda(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+								return true;
+							}
+							return false;
+						}
+						return false;
+				}
 				
+				//diagonal superior direita
+				else if(this.getPosicaoXreiBranco() > posicaoXpeca && this.getPosicaoYreiBranco() < posicaoYpeca){
+					//verifica se o rei esta na mesma diagonal que o bispo
+					if((this.getPosicaoXreiBranco() - posicaoXpeca) == (posicaoYpeca - this.getPosicaoYreiBranco())){
+						
+						//verifica se existe alguma peca no caminho do bispo
+						if(verificaEspacoSuperiorDireita(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+							return true;
+						}
+						return false;
+					}
+					return false;
+				}
+				
+				//diagonal inferior esquerda
+				else if(this.getPosicaoXreiBranco() < posicaoXpeca && this.getPosicaoYreiBranco() > posicaoYpeca){
+					//verifica se o rei esta na mesma diagonal que o bispo
+					if((posicaoXpeca - this.getPosicaoXreiBranco()) == (this.getPosicaoYreiBranco() - posicaoYpeca)){
+
+						//verifica se existe alguma peca no caminho do bispo
+						if(verificaEspacoInferiorEsquerda(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+							return true;
+						}
+						return false;
+					}
+					return false;
+				}
+				
+				//diagonal inferior direita
+				else if(this.getPosicaoXreiBranco() > posicaoXpeca && this.getPosicaoYreiBranco() > posicaoYpeca){
+					
+						if((this.getPosicaoXreiBranco() - posicaoXpeca) == (this.getPosicaoYreiBranco() - posicaoYpeca) ){
+							
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoInferiorDireita(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+								return true;
+							}
+							return false;
+						}
+						return false;
+				}
+				return false;
 			}
 			
 			//verifica se o cavalo esta dando xeque no rei (cavalo ataca em l)
@@ -1430,7 +1694,7 @@ public class Rei extends Peca {
 				this.posicaox = espaco.getX();
 				
 				this.setPosicaoXReiPreto(posicaox);
-				this.setPosicaoXReiPreto(posicaoy);
+				this.setPosicaoYReiPreto(posicaoy);
 				
 				tabuleiro.remove(espaco);
 				espaco.add(new Espaco("preto"));
@@ -1458,7 +1722,7 @@ public class Rei extends Peca {
 				this.posicaox = espaco.getX();
 				
 				this.setPosicaoXReiBranco(posicaox);
-				this.setPosicaoXReiBranco(posicaoy);
+				this.setPosicaoYReiBranco(posicaoy);
 				
 				tabuleiro.remove(espaco);
 				espaco.add(new Espaco("branco"));
@@ -1493,7 +1757,7 @@ public class Rei extends Peca {
 				this.posicaox = posicaoAtualX;
 				
 				this.setPosicaoXReiPreto(posicaox);
-				this.setPosicaoXReiPreto(posicaoy);
+				this.setPosicaoYReiPreto(posicaoy);
 				
 				tabuleiro.remove(espaco);
 				espaco.add(new Espaco("preto"));
@@ -1525,7 +1789,7 @@ public class Rei extends Peca {
 				this.posicaox = posicaoAtualX;
 				
 				this.setPosicaoXReiBranco(posicaox);
-				this.setPosicaoXReiBranco(posicaoy);
+				this.setPosicaoYReiBranco(posicaoy);
 				
 				tabuleiro.remove(espaco);
 				espaco.add(new Espaco("branco"));
