@@ -685,7 +685,7 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public void atualizarTabuleiro() {
-
+		janelaJogo.repaint();
 	}
 
 	public void reiniciarTabuleiro() {
@@ -793,10 +793,20 @@ public class Tabuleiro extends JFrame {
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				rei.movimentarPeca(null,espaco,tabuleiro);
+				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(rei.getPosicaox(),rei.getPosicaoy(),tabuleiro,rei,rei.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				rei.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//verifica xeque do rei num ataque
+				if(r.verificarXeque(rei.getPosicaox(),rei.getPosicaoy(),tabuleiro,rei,rei.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 		else if(peca instanceof Bispo){
@@ -827,10 +837,20 @@ public class Tabuleiro extends JFrame {
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				rainha.movimentarPeca(null,espaco,tabuleiro);
+				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(rainha.getPosicaox(),rainha.getPosicaoy(),tabuleiro,rainha,rainha.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				rainha.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//verifica xeque do rei num ataque
+				if(r.verificarXeque(rainha.getPosicaox(),rainha.getPosicaoy(),tabuleiro,rainha,rainha.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 		else if(peca instanceof Torre){
@@ -861,10 +881,20 @@ public class Tabuleiro extends JFrame {
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				cavalo.movimentarPeca(null,espaco,tabuleiro);
+				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(cavalo.getPosicaox(),cavalo.getPosicaoy(),tabuleiro,cavalo,cavalo.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}		
 			}
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				cavalo.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//verifica xeque do rei num ataque
+				if(r.verificarXeque(cavalo.getPosicaox(),cavalo.getPosicaoy(),tabuleiro,cavalo,cavalo.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 		return false;

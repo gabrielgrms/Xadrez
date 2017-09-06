@@ -60,6 +60,7 @@ public class Peao extends Peca {
 			JLabel imgRainhaEspecial = new JLabel(imgRainha);
 			Rainha rainhaEspecial = new Rainha(posicaox, posicaoy,this.cor,imgRainhaEspecial,this.tabuleiro);
 			imgRainhaEspecial.addMouseListener(rainhaEspecial);
+			rainhaEspecial.setTipo("rainha");
 			this.tabuleiro.getPecas().add(rainhaEspecial);
 			new PecaMorta().check(this);
 			JButton espaco = (JButton) tabuleiro.getComponentAt(posicaox+50, posicaoy);
@@ -77,6 +78,7 @@ public class Peao extends Peca {
 			Icon imgRainha = new ImageIcon("image/rainhaPreto.png");
 			JLabel imgRainhaEspecial = new JLabel(imgRainha);
 			Rainha rainhaEspecial = new Rainha(posicaox, posicaoy,this.cor,imgRainhaEspecial,this.tabuleiro);
+			rainhaEspecial.setTipo("rainha");
 			imgRainhaEspecial.addMouseListener(rainhaEspecial);
 			this.tabuleiro.getPecas().add(rainhaEspecial);
       new PecaMorta().check(this);

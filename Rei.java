@@ -143,48 +143,48 @@ private boolean verificaEspacoInferior(int posicaoXpeca,int posicaoYpeca,JPanel 
 	return false;
 }
 
-private boolean verificaEspacoLateralDireita(int posicaoXpeca,int posicaoYpeca,JPanel tabuleiro,Color cor){
+	private boolean verificaEspacoLateralDireita(int posicaoXpeca,int posicaoYpeca,JPanel tabuleiro,Color cor){
 	
-	//a peca que esta na direcao do rei eh branca
-	if(cor == Color.WHITE){
-		while(posicaoXpeca + 60 != this.getPosicaoXreiPreto()){
-			if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca)instanceof JLabel ){
-				return false;
-			}
-			else if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca)instanceof JButton){
-				
-				JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca);
-		
-				if(espacoAux.getComponentCount() != 0){
+		//a peca que esta na direcao do rei eh branca
+		if(cor == Color.WHITE){
+			while(posicaoXpeca + 60 != this.getPosicaoXreiPreto()){
+				if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca)instanceof JLabel ){
 					return false;
 				}
+				else if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca)instanceof JButton){
+					
+					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca);
+			
+					if(espacoAux.getComponentCount() != 0){
+						return false;
+					}
+				}
+				posicaoXpeca = posicaoXpeca + 60;
 			}
-			posicaoXpeca = posicaoXpeca + 60;
+			return true;
 		}
-		return true;
-	}
-	
-	//a peca que esta na direcao do rei eh preta
-	if(cor == Color.BLACK){
-		while(posicaoXpeca + 60 != this.getPosicaoXreiBranco()){
-			if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca)instanceof JLabel ){
-				return false;
-			}
-			else if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca)instanceof JButton){
-				JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca);
 		
-				if(espacoAux.getComponentCount() != 0){
+		//a peca que esta na direcao do rei eh preta
+		if(cor == Color.BLACK){
+			while(posicaoXpeca + 60 != this.getPosicaoXreiBranco()){
+				if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca)instanceof JLabel ){
 					return false;
 				}
+				else if(tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca)instanceof JButton){
+					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoXpeca + 60, posicaoYpeca);
+			
+					if(espacoAux.getComponentCount() != 0){
+						return false;
+					}
+				}
+				posicaoXpeca = posicaoXpeca + 60;
 			}
-			posicaoXpeca = posicaoXpeca + 60;
+			return true;
 		}
-		return true;
-	}
-	return false;
+		return false;
 }
 
-private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,JPanel tabuleiro,Color cor){
+	private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,JPanel tabuleiro,Color cor){
 	//a peca que esta na direcao do rei eh branca
 	if(cor == Color.WHITE){
 		while(posicaoXpeca - 60 != this.getPosicaoXreiPreto()){
@@ -403,24 +403,57 @@ private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,
 			
 			//verifica se o peao esta dando xeque no rei (peao so ataca pelas diagonais e de uma em uma celula)
 			if(peca.getTipo().equals("peao")){
-				
-				
+								
 				//rei esta na diagonal superior direita do peao
 				if(posicaoXpeca > this.getPosicaoXreiPreto() && posicaoYpeca > this.getPosicaoYreiPreto()
-						&& (posicaoXpeca - this.getPosicaoXreiPreto()) == 60 && (posicaoYpeca - this.getPosicaoYreiPreto()) == 60)
+						&& (posicaoXpeca - this.getPosicaoXreiPreto()) == 60 && (posicaoYpeca - this.getPosicaoYreiPreto()) == 60){
 					return true;
+				}
 				
 				//rei esta na diagonal superior esquerda do peao
 				if(posicaoXpeca < this.getPosicaoXreiPreto() && posicaoYpeca > this.getPosicaoYreiPreto()
-						&& (this.getPosicaoXreiPreto() - posicaoXpeca) == 60 && (posicaoYpeca - this.getPosicaoYreiPreto()) == 60)
+						&& (this.getPosicaoXreiPreto() - posicaoXpeca) == 60 && (posicaoYpeca - this.getPosicaoYreiPreto()) == 60){
 					return true;
+				}
 				
 				return false;
 			}
 			
 			//verifica se o rei esta dando xeque no rei (rei ataca em todas as direcoes celula por celula)
 			else if(peca.getTipo().equals("rei")){
+				//frente			
+				if(posicaoYpeca - 60 == this.getPosicaoYreiPreto() && posicaoXpeca == this.getPosicaoXreiPreto())
+					return true;
 				
+				//tras
+				else if(posicaoYpeca + 60 == this.getPosicaoYreiPreto() && posicaoXpeca == this.getPosicaoXreiPreto())
+					return true;
+				
+				//diagonal superior direita
+				else if(posicaoYpeca - 60 == this.getPosicaoYreiPreto() && posicaoXpeca +60 == this.getPosicaoXreiPreto())
+					return true;
+				
+				//diagonal superior esquerda
+				else if(posicaoYpeca - 60 == this.getPosicaoYreiPreto() && posicaoXpeca - 60 == this.getPosicaoXreiPreto())
+					return true;
+				
+				//diagonal inferior direita
+				else if(posicaoYpeca + 60 == this.getPosicaoYreiPreto() && posicaoXpeca + 60 == this.getPosicaoXreiPreto())
+					return true;
+				
+				//diagonal inferior esquerda
+				else if(posicaoYpeca + 60 == this.getPosicaoYreiPreto() && posicaoXpeca - 60 == this.getPosicaoXreiPreto())
+					return true;
+				
+				//direita
+				else if(posicaoYpeca  == this.getPosicaoYreiPreto() && posicaoXpeca + 60 == this.getPosicaoXreiPreto())
+					return true;
+				
+				//esquerda
+				else if(posicaoYpeca  == this.getPosicaoYreiPreto() && posicaoXpeca - 60 == this.getPosicaoXreiPreto())
+					return true;
+				
+				return false;	
 			}
 			
 			//verifica se o bispo esta dando xeque no rei (bispo ataca pelas diagonais)
@@ -488,6 +521,39 @@ private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,
 			//verifica se o cavalo esta dando xeque no rei (cavalo ataca em l)
 			else if(peca.getTipo().equals("cavalo")){
 				
+				//l deitado para a esquerda comecando de cima
+				if(posicaoXpeca == this.getPosicaoXreiPreto()  - 120 && posicaoYpeca == this.getPosicaoYreiPreto() + 60)
+					return true;
+				
+				//l deitado para a direita comecando de cima
+				else if(posicaoXpeca == this.getPosicaoXreiPreto()  + 120 && posicaoYpeca == this.getPosicaoYreiPreto() + 60)
+					return true;
+				
+				//l deitado para a esquerda comecando de baixo
+				else if(posicaoXpeca == this.getPosicaoXreiPreto() - 120 && posicaoYpeca == this.getPosicaoYreiPreto() - 60)
+					return true;
+				
+				//l deitado para a direita começando de baixo
+				else if(posicaoXpeca == this.getPosicaoXreiPreto()  + 120 && posicaoYpeca == this.getPosicaoYreiPreto() - 60)
+					return true;
+				
+				//l em pe para a esquerda comecando de cima
+				else if(posicaoXpeca == this.getPosicaoXreiPreto()  - 60 && posicaoYpeca == this.getPosicaoYreiPreto() + 120)
+					return true;
+				
+				//l em pe para a direita comecando de cima
+				else if(posicaoXpeca == this.getPosicaoXreiPreto()  + 60 && posicaoYpeca == this.getPosicaoYreiPreto() + 120)
+					return true;
+				
+				//l em pe para a esquerda comecando de baixo
+				else if(posicaoXpeca == this.getPosicaoXreiPreto()  - 60 && posicaoYpeca == this.getPosicaoYreiPreto() - 120)
+					return true;
+				
+				//l em pe para a direita comecando de baixo
+				else if(posicaoXpeca == this.getPosicaoXreiPreto()  + 60 && posicaoYpeca == this.getPosicaoYreiPreto() - 120)
+					return true;
+				
+				return false;
 			}
 			
 			//verifica se a torre esta dando xeque no rei (torre ataca em horizontal e vertical)
@@ -530,14 +596,107 @@ private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,
 					}
 					return false;
 				}
+				return false;
 				
 			}
 			
 			//verifica se a rainha esta dando xeque no rei (rainha ataca em todas as posicoes)
 			else if(peca.getTipo().equals("rainha")){
+				//inferior
+				if(this.getPosicaoYreiPreto() < posicaoYpeca && this.getPosicaoXreiPreto() == posicaoXpeca){
 				
-			}
-			
+					//verifica se existe alguma peca no caminho da torre
+					if(verificaEspacoSuperior(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+						return true;
+					}
+					return false;
+				}
+				
+				//superior
+				else if(this.getPosicaoYreiPreto() > posicaoYpeca && this.getPosicaoXreiPreto() == posicaoXpeca){
+					
+					//verifica se existe alguma peca no caminho da torre
+					if(verificaEspacoInferior(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+						return true;
+					}
+					return false;
+				}
+				
+				//esquerda
+				else if(this.getPosicaoYreiPreto() == posicaoYpeca && this.getPosicaoXreiPreto() < posicaoXpeca){
+					//verifica se existe alguma peca no caminho da torre
+					if(verificaEspacoLateralEsquerda(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+						return true;
+					}
+					return false;
+				}
+				
+				//direita
+				else if(this.getPosicaoYreiPreto() == posicaoYpeca && this.getPosicaoXreiPreto() > posicaoXpeca){
+					//verifica se existe alguma peça no caminho da torre
+					if(verificaEspacoLateralDireita(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+						return true;
+					}
+					return false;
+				}
+				
+				//diagonal superior esquerda
+				else if(this.getPosicaoXreiPreto() < posicaoXpeca && this.getPosicaoYreiPreto() < posicaoYpeca){
+						//verifica se o rei esta na mesma diagonal que o bispo
+						if((this.getPosicaoXreiPreto() - posicaoXpeca) == (this.getPosicaoYreiPreto() - posicaoYpeca)){
+							
+							//verifica se existe alguma peca no caminho do bispo
+							if(verificaEspacoSuperiorEsquerda(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+								return true;
+							}
+							return false;
+						}
+						return false;
+				}
+				
+				//diagonal superior direita
+				else if(this.getPosicaoXreiPreto() > posicaoXpeca && this.getPosicaoYreiPreto() < posicaoYpeca){
+					//verifica se o rei esta na mesma diagonal que o bispo
+					if((this.getPosicaoXreiPreto() - posicaoXpeca) == (posicaoYpeca - this.getPosicaoYreiPreto())){
+						
+						//verifica se existe alguma peca no caminho do bispo
+						if(verificaEspacoSuperiorDireita(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+							return true;
+						}
+						return false;
+					}
+					return false;
+				}
+				
+				//diagonal inferior esquerda
+				else if(this.getPosicaoXreiPreto() < posicaoXpeca && this.getPosicaoYreiPreto() > posicaoYpeca){
+					//verifica se o rei esta na mesma diagonal que o bispo
+					if((posicaoXpeca - this.getPosicaoXreiPreto()) == (this.getPosicaoYreiPreto() - posicaoYpeca)){
+
+						//verifica se existe alguma peca no caminho do bispo
+						if(verificaEspacoInferiorEsquerda(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+							return true;
+						}
+						return false;
+					}
+					return false;
+				}
+				
+				//diagonal inferior direita
+				else if(this.getPosicaoXreiPreto() > posicaoXpeca && this.getPosicaoYreiPreto() > posicaoYpeca){
+					
+						if((this.getPosicaoXreiPreto() - posicaoXpeca) == (this.getPosicaoYreiPreto() - posicaoYpeca) ){
+							
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoInferiorDireita(posicaoXpeca,posicaoYpeca,tabuleiro,Color.WHITE)){
+								return true;
+							}
+							return false;
+						}
+						return false;
+				}
+				return false;				
+			}			
 			return false;
 		}
 		
@@ -549,14 +708,16 @@ private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,
 				
 				//rei esta na diagonal inferior esquerda do peao
 				if(posicaoXpeca < this.getPosicaoXreiBranco() && posicaoYpeca < this.getPosicaoYreiBranco()
-						&& (this.getPosicaoXreiBranco() - posicaoXpeca) == 60 && (this.getPosicaoYreiBranco() - posicaoYpeca) == 60)
+						&& (this.getPosicaoXreiBranco() - posicaoXpeca) == 60 && (this.getPosicaoYreiBranco() - posicaoYpeca) == 60){
 					return true;
+				}
 				
 				
 				//rei esta na diagonal inferior direita do peao
 				if(posicaoXpeca > this.getPosicaoXreiBranco() && posicaoYpeca < this.getPosicaoYreiBranco()
-						&& (posicaoXpeca - this.getPosicaoXreiBranco()) == 60 && (this.getPosicaoYreiBranco() - posicaoYpeca) == 60)
+						&& (posicaoXpeca - this.getPosicaoXreiBranco()) == 60 && (this.getPosicaoYreiBranco() - posicaoYpeca) == 60){
 					return true;
+				}
 				
 				return false;
 			}
@@ -564,6 +725,39 @@ private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,
 			//verifica se o rei esta dando xeque no rei (rei ataca em todas as direcoes celula por celula)
 			else if(peca.getTipo().equals("rei")){
 				
+					//frente			
+					if(posicaoYpeca - 60 == this.getPosicaoYreiBranco() && posicaoXpeca == this.getPosicaoXreiBranco())
+						return true;
+					
+					//tras
+					else if(posicaoYpeca + 60 == this.getPosicaoYreiBranco() && posicaoXpeca == this.getPosicaoXreiBranco())
+						return true;
+					
+					//diagonal superior direita
+					else if(posicaoYpeca - 60 == this.getPosicaoYreiBranco() && posicaoXpeca +60 == this.getPosicaoXreiBranco())
+						return true;
+					
+					//diagonal superior esquerda
+					else if(posicaoYpeca - 60 == this.getPosicaoYreiBranco() && posicaoXpeca - 60 == this.getPosicaoXreiBranco())
+						return true;
+					
+					//diagonal inferior direita
+					else if(posicaoYpeca + 60 == this.getPosicaoYreiBranco() && posicaoXpeca + 60 == this.getPosicaoXreiBranco())
+						return true;
+					
+					//diagonal inferior esquerda
+					else if(posicaoYpeca + 60 == this.getPosicaoYreiBranco() && posicaoXpeca - 60 == this.getPosicaoXreiBranco())
+						return true;
+					
+					//direita
+					else if(posicaoYpeca  == this.getPosicaoYreiBranco() && posicaoXpeca + 60 == this.getPosicaoXreiBranco())
+						return true;
+					
+					//esquerda
+					else if(posicaoYpeca  == this.getPosicaoYreiBranco() && posicaoXpeca - 60 == this.getPosicaoXreiBranco())
+						return true;
+					
+					return false;				
 			}
 			
 			//verifica se o bispo esta dando xeque no rei (bispo ataca pelas diagonais)
@@ -628,7 +822,39 @@ private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,
 			
 			//verifica se o cavalo esta dando xeque no rei (cavalo ataca em l)
 			else if(peca.getTipo().equals("cavalo")){
+				//l deitado para a esquerda comecando de cima
+				if(posicaoXpeca == this.getPosicaoXreiBranco()  - 120 && posicaoYpeca == this.getPosicaoYreiBranco() + 60)
+					return true;
 				
+				//l deitado para a direita comecando de cima
+				else if(posicaoXpeca == this.getPosicaoXreiBranco()  + 120 && posicaoYpeca == this.getPosicaoYreiBranco() + 60)
+					return true;
+				
+				//l deitado para a esquerda comecando de baixo
+				else if(posicaoXpeca == this.getPosicaoXreiBranco() - 120 && posicaoYpeca == this.getPosicaoYreiBranco() - 60)
+					return true;
+				
+				//l deitado para a direita começando de baixo
+				else if(posicaoXpeca == this.getPosicaoXreiBranco()  + 120 && posicaoYpeca == this.getPosicaoYreiBranco() - 60)
+					return true;
+				
+				//l em pe para a esquerda comecando de cima
+				else if(posicaoXpeca == this.getPosicaoXreiBranco()  - 60 && posicaoYpeca == this.getPosicaoYreiBranco() + 120)
+					return true;
+				
+				//l em pe para a direita comecando de cima
+				else if(posicaoXpeca == this.getPosicaoXreiBranco()  + 60 && posicaoYpeca == this.getPosicaoYreiBranco() + 120)
+					return true;
+				
+				//l em pe para a esquerda comecando de baixo
+				else if(posicaoXpeca == this.getPosicaoXreiBranco()  - 60 && posicaoYpeca == this.getPosicaoYreiBranco() - 120)
+					return true;
+				
+				//l em pe para a direita comecando de baixo
+				else if(posicaoXpeca == this.getPosicaoXreiBranco()  + 60 && posicaoYpeca == this.getPosicaoYreiBranco() - 120)
+					return true;
+				
+				return false;
 			}
 			
 			//verifica se a torre esta dando xeque no rei (torre ataca em horizontal e vertical)
@@ -669,13 +895,104 @@ private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,
 					}
 					return false;
 				}
+				return false;
 			}
 			
 			//verifica se a rainha esta dando xeque no rei (rainha ataca em todas as posicoes)
 			else if(peca.getTipo().equals("rainha")){
+				//inferior
+				if(this.getPosicaoYreiBranco() < posicaoYpeca && this.getPosicaoXreiBranco() == posicaoXpeca){
+					//verifica se existe alguma peca no caminho da torre
+					if(verificaEspacoSuperior(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+						return true;
+					}
+					return false;
+				}
 				
-			}
-			
+				//superior
+				else if(this.getPosicaoYreiBranco() > posicaoYpeca && this.getPosicaoXreiBranco() == posicaoXpeca){
+					//verifica se existe alguma peca no caminho da torre
+					if(verificaEspacoInferior(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+						return true;
+					}
+					return false;
+				}
+				
+				//esquerda
+				else if(this.getPosicaoYreiBranco() == posicaoYpeca && this.getPosicaoXreiBranco() < posicaoXpeca){
+					//verifica se existe alguma peca no caminho da torre
+					if(verificaEspacoLateralEsquerda(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+						return true;
+					}
+					return false;
+				}
+				
+				//direita
+				else if(this.getPosicaoYreiBranco() == posicaoYpeca && this.getPosicaoXreiBranco() > posicaoXpeca){
+					//verifica se existe alguma peça no caminho da torre
+					if(verificaEspacoLateralDireita(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+						return true;
+					}
+					return false;
+				}
+				
+				//diagonal superior esquerda
+				else if(this.getPosicaoXreiBranco() < posicaoXpeca && this.getPosicaoYreiBranco() < posicaoYpeca){
+						//verifica se o rei esta na mesma diagonal que o bispo
+						if((this.getPosicaoXreiBranco() - posicaoXpeca) == (this.getPosicaoYreiBranco() - posicaoYpeca)){
+							
+							//verifica se existe alguma peca no caminho do bispo
+							if(verificaEspacoSuperiorEsquerda(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+								return true;
+							}
+							return false;
+						}
+						return false;
+				}
+				
+				//diagonal superior direita
+				else if(this.getPosicaoXreiBranco() > posicaoXpeca && this.getPosicaoYreiBranco() < posicaoYpeca){
+					//verifica se o rei esta na mesma diagonal que o bispo
+					if((this.getPosicaoXreiBranco() - posicaoXpeca) == (posicaoYpeca - this.getPosicaoYreiBranco())){
+						
+						//verifica se existe alguma peca no caminho do bispo
+						if(verificaEspacoSuperiorDireita(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+							return true;
+						}
+						return false;
+					}
+					return false;
+				}
+				
+				//diagonal inferior esquerda
+				else if(this.getPosicaoXreiBranco() < posicaoXpeca && this.getPosicaoYreiBranco() > posicaoYpeca){
+					//verifica se o rei esta na mesma diagonal que o bispo
+					if((posicaoXpeca - this.getPosicaoXreiBranco()) == (this.getPosicaoYreiBranco() - posicaoYpeca)){
+
+						//verifica se existe alguma peca no caminho do bispo
+						if(verificaEspacoInferiorEsquerda(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+							return true;
+						}
+						return false;
+					}
+					return false;
+				}
+				
+				//diagonal inferior direita
+				else if(this.getPosicaoXreiBranco() > posicaoXpeca && this.getPosicaoYreiBranco() > posicaoYpeca){
+					
+						if((this.getPosicaoXreiBranco() - posicaoXpeca) == (this.getPosicaoYreiBranco() - posicaoYpeca) ){
+							
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoInferiorDireita(posicaoXpeca,posicaoYpeca,tabuleiro,Color.BLACK)){
+								return true;
+							}
+							return false;
+						}
+						return false;
+				}
+				return false;				
+			}			
 			return false;
 		}
 		
@@ -1630,7 +1947,7 @@ private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,
 						}
 					}
 				}
-				if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
+				else if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
 					usarJogadaEspecial(pecaNaFrente, tabuleiro);
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao(false,this.cor);
@@ -1898,7 +2215,7 @@ private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,
 					}
 				}
 				//Roque
-				if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
+				else if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
 					usarJogadaEspecial(pecaNaFrente, tabuleiro);
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao(false,this.cor);
@@ -2042,8 +2359,6 @@ private boolean verificaEspacoLateralEsquerda(int posicaoXpeca,int posicaoYpeca,
 				this.tabuleiro.destravaSelecao(false,this.cor);
 			}
 		}
-			this.selecionada = false;
-			this.tabuleiro.destravaSelecao(false,this.cor);
 	}
 	
 	public void mouseClicked(MouseEvent e){
