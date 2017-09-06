@@ -959,10 +959,11 @@ public class Rei extends Peca {
 						}
 					}
 				}
+				//Roque
 				if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
 					usarJogadaEspecial(pecaNaFrente, tabuleiro);
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false,this.cor);
+					this.tabuleiro.destravaSelecao(true,this.cor);
 				}
 				else{
 					this.selecionada = false;
@@ -1230,7 +1231,7 @@ public class Rei extends Peca {
 				if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
 					usarJogadaEspecial(pecaNaFrente, tabuleiro);
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false,this.cor);
+					this.tabuleiro.destravaSelecao(true,this.cor);
 				}
 				else{
 					this.selecionada = false;
