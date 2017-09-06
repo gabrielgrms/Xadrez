@@ -147,7 +147,7 @@ public class Tabuleiro extends JFrame {
 
 		jogadordavez.setFont(new Font("", Font.BOLD, 23));
 		//define tamanho e posicao dos botoes
-		jogadordavez.setBounds(550, 145, 150, 50);
+		jogadordavez.setBounds(50, 0, 600, 50);
 		botaoReiniciar.setBounds(550, 530, 100, 30);
 		botaoInstrucoes.setBounds(550, 563, 100, 30);
 		botaoRegras.setBounds(550, 596, 100, 30);
@@ -927,4 +927,5 @@ public class Tabuleiro extends JFrame {
 	public JPanel getPainel(){
 		return tabuleiro;
 	}
+	
 }
