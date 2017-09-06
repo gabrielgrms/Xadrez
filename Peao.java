@@ -103,6 +103,7 @@ public class Peao extends Peca {
 					if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy-60 == espaco.getY() && espaco.getComponentCount() != 0){
 						atacarPeca(null,espaco,tabuleiro);
 						usarJogadaEspecial(tabuleiro);
+						this.selecionada = false;
 						this.tabuleiro.destravaSelecao(true,this.cor);
 						this.tabuleiro.atualizarTabuleiro();
 					}
@@ -163,6 +164,9 @@ public class Peao extends Peca {
 						if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy+60 == espaco.getY() && espaco.getComponentCount() != 0 ){
 							atacarPeca(null,espaco,tabuleiro);
 							usarJogadaEspecial(tabuleiro);
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao(true,this.cor);
+							this.tabuleiro.atualizarTabuleiro();
 						}
 						//trata primeiro movimento do peao
 						else if(posicaoy == 110){
@@ -220,12 +224,14 @@ public class Peao extends Peca {
 			else if(pecaNaFrente!= null && (posicaox + 60 == pecaNaFrente.getX() || posicaox-60 == pecaNaFrente.getX()) && posicaoy-60 == pecaNaFrente.getY() && this.cor == Color.WHITE){
 				atacarPeca(pecaNaFrente,null,tabuleiro);
 				usarJogadaEspecial(tabuleiro);
+				this.selecionada = false;
 				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.atualizarTabuleiro();
 			}
 			else if(pecaNaFrente!= null && (posicaox + 60 == pecaNaFrente.getX() || posicaox-60 == pecaNaFrente.getX()) && posicaoy+60 == pecaNaFrente.getY() && this.cor == Color.BLACK){
 				atacarPeca(pecaNaFrente,null,tabuleiro);
 				usarJogadaEspecial(tabuleiro);
+				this.selecionada = false;
 				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.atualizarTabuleiro();
 			}
