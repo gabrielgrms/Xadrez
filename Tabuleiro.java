@@ -114,7 +114,7 @@ public class Tabuleiro extends JFrame {
 		botaoSair = new JButton("Sair");
 		botaoInstrucoes = new JButton("Instrucoes");
 		botaoRegras = new JButton("Regras");
-		botaoPecas = new JButton("Cemitério");
+		botaoPecas = new JButton("Cemiterio");
 		
 		//criando nova instancia de imagem do tabuleiro
 		imagemTabuleiro = new ImageIcon("image/board_chess.png");
@@ -156,10 +156,10 @@ public class Tabuleiro extends JFrame {
 				
 		//adiciona ação nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
-		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instru��es"));
+		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instrucoes"));
 		botaoSair.addActionListener(new FechaJogo());
 		botaoReiniciar.addActionListener(new ReiniciaJogo(this));
-		botaoPecas.addActionListener(new AparecePecasComidas("Pe�as fora do jogo"));
+		botaoPecas.addActionListener(new AparecePecasComidas("Pecas fora do jogo"));
 		tabuleiro.add(jogadordavez);
 		tabuleiro.add(botaoReiniciar);
 		tabuleiro.add(botaoInstrucoes);
