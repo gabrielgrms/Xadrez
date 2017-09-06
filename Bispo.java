@@ -1009,6 +1009,7 @@ public void mouseClicked(MouseEvent e){
 			this.tabuleiro.destravaSelecao(false,this.cor);
 		}
 		else if(podeSelecionar){
+			this.ativaHighlight();
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
