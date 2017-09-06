@@ -1,7 +1,5 @@
-import java.awt.Color;
-import java.awt.LayoutManager;
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -105,7 +103,7 @@ public class Tabuleiro extends JFrame {
 	private Tabuleiro(){
 		janelaJogo = new JFrame();
 		janelaJogo.setTitle("Xadrez");
-		janelaJogo.setIconImage(new ImageIcon("chess.png").getImage());
+		janelaJogo.setIconImage(new ImageIcon("image/chess.png").getImage());
 		this.MontaComponentes();
 	}
 	
@@ -145,14 +143,15 @@ public class Tabuleiro extends JFrame {
 		
 		//O layout do tabuleiro Ã© definido como nulo (por enquanto)
 		tabuleiro.setLayout(null);
-				
+
+		jogadordavez.setFont(new Font("", Font.BOLD, 23));
 		//define tamanho e posicao dos botoes
-		jogadordavez.setBounds(550, 145, 150, 50);
-		botaoReiniciar.setBounds(550, 530, 100, 30);
-		botaoInstrucoes.setBounds(550, 563, 100, 30);
-		botaoRegras.setBounds(550, 596, 100, 30);
-		botaoSair.setBounds(550, 629, 100, 30);
-		botaoPecas.setBounds(550,245,100,70);
+		jogadordavez.setBounds(50, 0, 600, 50);
+		botaoReiniciar.setBounds(550, 350, 100, 30);
+		botaoInstrucoes.setBounds(550, 384, 100, 30);
+		botaoRegras.setBounds(550, 418, 100, 30);
+		botaoSair.setBounds(550, 452, 100, 30);
+		botaoPecas.setBounds(550,100,100,70);
 				
 		//adiciona ação nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
@@ -175,7 +174,7 @@ public class Tabuleiro extends JFrame {
 		janelaJogo.getContentPane().add(tabuleiro);
 		
 		//Define o tamanho da Janela
-		janelaJogo.setSize(700, 700);
+		janelaJogo.setSize(700, 600);
 		janelaJogo.setResizable(false);
 		
 		//esperar confirmacao do usuario para fechar realmente
