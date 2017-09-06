@@ -355,6 +355,7 @@ public class Peao extends Peca {
 			this.tabuleiro.destravaSelecao(false,this.cor);
 		}
 		else if(podeSelecionar){
+			this.ativaHighlight();
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
