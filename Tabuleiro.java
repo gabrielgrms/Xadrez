@@ -104,7 +104,8 @@ public class Tabuleiro extends JFrame {
 	//construtor do tabuleiro (serve para reiniciar jogo)
 	private Tabuleiro(){
 		janelaJogo = new JFrame();
-		
+		janelaJogo.setTitle("Xadrez");
+		janelaJogo.setIconImage(new ImageIcon("chess.png").getImage());
 		this.MontaComponentes();
 	}
 	
