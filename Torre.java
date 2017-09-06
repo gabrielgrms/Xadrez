@@ -158,6 +158,7 @@ public class Torre extends Peca {
 	}
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
+		this.desativaHighlight();
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.WHITE){
 	
