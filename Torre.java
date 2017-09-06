@@ -1053,7 +1053,7 @@ public class Torre extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao(false,this.cor);
+				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.repaint();
 			}
 		}

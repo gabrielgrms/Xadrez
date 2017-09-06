@@ -765,13 +765,14 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public boolean validarMovimento(Peca peca, Object c,Rei r) {
+		
 		if(peca instanceof Peao){
 			Peao p = (Peao)peca;
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				p.movimentarPeca(null,espaco, tabuleiro);
 				
-				//verifica xeque do rei
+				//verifica xeque do rei num movimento
 				if(r.verificarXeque(p.getPosicaox(),p.getPosicaoy(),tabuleiro,p,p.getCor())){
 	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
 				}				
@@ -780,7 +781,7 @@ public class Tabuleiro extends JFrame {
 				JLabel pecaNaFrente = (JLabel)c;
 				p.movimentarPeca(pecaNaFrente,null, tabuleiro);
 				
-				//verifica xeque do rei
+				//verifica xeque do rei num ataque
 					if(r.verificarXeque(p.getPosicaox(),p.getPosicaoy(),tabuleiro,p,p.getCor())){
 	                      JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
 					}
@@ -804,9 +805,8 @@ public class Tabuleiro extends JFrame {
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				bispo.movimentarPeca(null,espaco,tabuleiro);
-				System.out.println(bispo.getPosicaox()+" "+bispo.getPosicaoy());
-				System.out.println(r.getPosicaoXreiBranco()+" "+r.getPosicaoYreiBranco());
-				//verifica xeque do rei
+
+				//verifica xeque do rei num movimento
 				if(r.verificarXeque(bispo.getPosicaox(),bispo.getPosicaoy(),tabuleiro,bispo,bispo.getCor())){
 	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -815,7 +815,7 @@ public class Tabuleiro extends JFrame {
 				JLabel pecaNaFrente = (JLabel)c;
 				bispo.movimentarPeca(pecaNaFrente,null, tabuleiro);
 				
-				//verifica xeque do rei
+				//verifica xeque do rei num ataque
 				if(r.verificarXeque(bispo.getPosicaox(),bispo.getPosicaoy(),tabuleiro,bispo,bispo.getCor())){
                       JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -839,10 +839,20 @@ public class Tabuleiro extends JFrame {
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				torre.movimentarPeca(null,espaco,tabuleiro);
+				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(torre.getPosicaox(),torre.getPosicaoy(),tabuleiro,torre,torre.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				torre.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(torre.getPosicaox(),torre.getPosicaoy(),tabuleiro,torre,torre.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 		else if(peca instanceof Cavalo){
