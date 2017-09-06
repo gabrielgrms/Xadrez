@@ -165,6 +165,7 @@ public class Rei extends Peca {
 	}
 
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
+		this.desativaHighlight();
 		if(this.cor == Color.BLACK && this.posicaox != 290 && this.posicaoy == 50){
 			this.roque = false;
 		}
