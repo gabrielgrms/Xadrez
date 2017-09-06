@@ -1105,5 +1105,13 @@ public void mouseClicked(MouseEvent e){
 			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
 		}
 	}
+
+	public boolean isMorta() {
+		return morta;
+	}
+
+	public void setMorta(boolean morta) {
+		this.morta = morta;
+	}
 	
 }

@@ -1023,6 +1023,8 @@ private boolean verificaEspacoInferior(int posicaoXpeca,int posicaoYpeca,JPanel 
 						espacoAntigoRei.remove(0);
 						espacoAntigoTorre.remove(0);
 						this.tabuleiro.atualizarTabuleiro();	
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao(true,this.cor);
 						
 					}
 				}
@@ -1047,6 +1049,8 @@ private boolean verificaEspacoInferior(int posicaoXpeca,int posicaoYpeca,JPanel 
 						espacoAntigoRei.remove(0);
 						espacoAntigoTorre.remove(0);
 						this.tabuleiro.atualizarTabuleiro();	
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao(true,this.cor);
 
 					}
 				}
@@ -1071,7 +1075,9 @@ private boolean verificaEspacoInferior(int posicaoXpeca,int posicaoYpeca,JPanel 
 						JButton espacoAntigoTorre = (JButton)tabuleiro.getComponentAt(470, 470);
 						espacoAntigoRei.remove(0);
 						espacoAntigoTorre.remove(0);
-						this.tabuleiro.atualizarTabuleiro();	
+						this.tabuleiro.atualizarTabuleiro();
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao(true,this.cor);
 
 					}
 				}
@@ -1097,6 +1103,8 @@ private boolean verificaEspacoInferior(int posicaoXpeca,int posicaoYpeca,JPanel 
 						espacoAntigoRei.remove(0);
 						espacoAntigoTorre.remove(0);
 						this.tabuleiro.atualizarTabuleiro();
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao(true,this.cor);
 					}
 				}
 			}
@@ -1953,8 +1961,6 @@ private boolean verificaEspacoInferior(int posicaoXpeca,int posicaoYpeca,JPanel 
 				}
 				else if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
 					usarJogadaEspecial(pecaNaFrente, tabuleiro);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(true,this.cor);
 				}
 				else{
 					this.selecionada = false;
@@ -2221,8 +2227,6 @@ private boolean verificaEspacoInferior(int posicaoXpeca,int posicaoYpeca,JPanel 
 				//Roque
 				else if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
 					usarJogadaEspecial(pecaNaFrente, tabuleiro);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(true,this.cor);
 				}
 				else{
 					this.selecionada = false;
@@ -2501,4 +2505,13 @@ private boolean verificaEspacoInferior(int posicaoXpeca,int posicaoYpeca,JPanel 
 	public int getPosicaoYreiPreto() {
 		return posicaoYreiPreto;
 	}
+
+	public boolean isMorta() {
+		return morta;
+	}
+
+	public void setMorta(boolean morta) {
+		this.morta = morta;
+	}
+	
 }
