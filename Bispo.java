@@ -15,7 +15,7 @@ public class Bispo extends Peca {
 	private int posicaoxIni;
 	private int posicaoyIni;
 	private boolean morta = false;
-	
+
 	public int getPosicaoxIni() {
 		return posicaoxIni;
 	}

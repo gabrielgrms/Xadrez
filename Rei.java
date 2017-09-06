@@ -13,6 +13,7 @@ public class Rei extends Peca {
 	private int posicaoy;
 	private int posicaoxIni;
 	private boolean morta = false;
+
 	private int posicaoyIni;
 	private boolean roque = true;
 	
@@ -2469,7 +2470,6 @@ private boolean verificaEspacoInferior(int posicaoXpeca,int posicaoYpeca,JPanel 
 			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
 		}
 	}
-	
 	public void setPosicaoXReiBranco(int x){
 		this.posicaoXreiBranco = x;
 	}

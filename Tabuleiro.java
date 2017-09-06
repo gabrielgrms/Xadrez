@@ -1,7 +1,5 @@
-import java.awt.Color;
-import java.awt.LayoutManager;
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -105,7 +103,8 @@ public class Tabuleiro extends JFrame {
 	//construtor do tabuleiro (serve para reiniciar jogo)
 	public Tabuleiro(){
 		janelaJogo = new JFrame();
-		
+		janelaJogo.setTitle("Xadrez");
+		janelaJogo.setIconImage(new ImageIcon("image/chess.png").getImage());
 		this.MontaComponentes();
 	}
 	
@@ -145,7 +144,8 @@ public class Tabuleiro extends JFrame {
 		
 		//O layout do tabuleiro Ã© definido como nulo (por enquanto)
 		tabuleiro.setLayout(null);
-				
+
+		jogadordavez.setFont(new Font("", Font.BOLD, 23));
 		//define tamanho e posicao dos botoes
 		jogadordavez.setBounds(550, 145, 150, 50);
 		botaoReiniciar.setBounds(550, 530, 100, 30);
@@ -175,7 +175,7 @@ public class Tabuleiro extends JFrame {
 		janelaJogo.getContentPane().add(tabuleiro);
 		
 		//Define o tamanho da Janela
-		janelaJogo.setSize(700, 700);
+		janelaJogo.setSize(700, 600);
 		janelaJogo.setResizable(false);
 		
 		//esperar confirmacao do usuario para fechar realmente
@@ -927,5 +927,4 @@ public class Tabuleiro extends JFrame {
 	public JPanel getPainel(){
 		return tabuleiro;
 	}
-	
 }

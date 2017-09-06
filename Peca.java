@@ -23,7 +23,6 @@ public abstract class Peca extends MouseAdapter {
 	public String getTipo(){
 		return tipo;
 	}
-	
 	public boolean isMorta() {
 		return morta;
 	}
