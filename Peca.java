@@ -12,6 +12,17 @@ public abstract class Peca extends MouseAdapter {
 	private boolean selecionada = false;
 	private boolean podeSelecionar = true;
 	private boolean morta = false;
+	String tipo;
+	
+	//seta o tipo de peça que sera construida
+	public void setTipo(String tipo){
+		this.tipo = tipo;
+	}
+	
+	//retorna o tipo da peca
+	public String getTipo(){
+		return tipo;
+	}
 	public boolean isMorta() {
 		return morta;
 	}

@@ -10,11 +10,12 @@ import javax.swing.JPanel;
 public class Bispo extends Peca {
 	
 	//posicao da peca selecionada
-	private int posicaox;
-	private int posicaoy;
+	private  int posicaox;
+	private  int posicaoy;
 	private int posicaoxIni;
 	private int posicaoyIni;
 	private boolean morta = false;
+
 	public int getPosicaoxIni() {
 		return posicaoxIni;
 	}
@@ -147,6 +148,7 @@ public class Bispo extends Peca {
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 		this.desativaHighlight();
+		
 		//clicou no canto do espaco
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.WHITE){

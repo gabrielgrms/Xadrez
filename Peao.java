@@ -11,8 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Peao extends Peca {
-	private int posicaox;
-	private int posicaoy;
+	private  int posicaox;
+	private  int posicaoy;
 	private int posicaoxIni;
 	private int posicaoyIni;
 	private Tabuleiro tabuleiro;
@@ -60,6 +60,7 @@ public class Peao extends Peca {
 			JLabel imgRainhaEspecial = new JLabel(imgRainha);
 			Rainha rainhaEspecial = new Rainha(posicaox, posicaoy,this.cor,imgRainhaEspecial,this.tabuleiro);
 			imgRainhaEspecial.addMouseListener(rainhaEspecial);
+			rainhaEspecial.setTipo("rainha");
 			this.tabuleiro.getPecas().add(rainhaEspecial);
 			new PecaMorta().check(this);
 			JButton espaco = (JButton) tabuleiro.getComponentAt(posicaox+50, posicaoy);
@@ -77,6 +78,7 @@ public class Peao extends Peca {
 			Icon imgRainha = new ImageIcon("image/rainhaPreto.png");
 			JLabel imgRainhaEspecial = new JLabel(imgRainha);
 			Rainha rainhaEspecial = new Rainha(posicaox, posicaoy,this.cor,imgRainhaEspecial,this.tabuleiro);
+			rainhaEspecial.setTipo("rainha");
 			imgRainhaEspecial.addMouseListener(rainhaEspecial);
 			this.tabuleiro.getPecas().add(rainhaEspecial);
       new PecaMorta().check(this);
@@ -98,7 +100,7 @@ public class Peao extends Peca {
 			//Realiza o movimento caso tenha clicado num espaço
 			if(espaco!=null && pecaNaFrente == null){
 				if(this.cor == Color.WHITE){
-					if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy-60 == espaco.getY()){
+					if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy-60 == espaco.getY() && espaco.getComponentCount() != 0){
 						atacarPeca(null,espaco,tabuleiro);
 						usarJogadaEspecial(tabuleiro);
 					}
@@ -252,6 +254,9 @@ public class Peao extends Peca {
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaco);
 				espacoAntigo.remove(0);
+				espaco.remove(0);
+				espaco.add(new Espaco("branco"));
+				tabuleiro.add(espaco);
 				this.selecionada = false;
 				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.atualizarTabuleiro();
@@ -276,8 +281,11 @@ public class Peao extends Peca {
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
-				tabuleiro.add(espaco);
+				//tabuleiro.add(espaco);
 				espacoAntigo.remove(0);
+				espaco.remove(0);
+				espaco.add(new Espaco("preto"));
+				tabuleiro.add(espaco);
 				this.selecionada = false;
 				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.atualizarTabuleiro();
@@ -305,8 +313,11 @@ public class Peao extends Peca {
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
-				tabuleiro.add(espaconovo);
+				//tabuleiro.add(espaconovo);
 				espacoAntigo.remove(0);
+				espaconovo.remove(0);
+				espaconovo.add(new Espaco("branco"));
+				tabuleiro.add(espaconovo);
 				this.selecionada = false;
 				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.atualizarTabuleiro();
@@ -334,8 +345,11 @@ public class Peao extends Peca {
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]); 
 				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
-				tabuleiro.add(espaconovo);
+				//tabuleiro.add(espaconovo);
 				espacoAntigo.remove(0);
+				espaconovo.remove(0);
+				espaconovo.add(new Espaco("preto"));
+				tabuleiro.add(espaconovo);
 				this.selecionada = false;
 				this.tabuleiro.destravaSelecao(true,this.cor);
 				this.tabuleiro.atualizarTabuleiro();

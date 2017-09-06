@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Tabuleiro extends JFrame {
@@ -100,7 +101,7 @@ public class Tabuleiro extends JFrame {
 	
 		
 	//construtor do tabuleiro (serve para reiniciar jogo)
-	private Tabuleiro(){
+	public Tabuleiro(){
 		janelaJogo = new JFrame();
 		janelaJogo.setTitle("Xadrez");
 		janelaJogo.setIconImage(new ImageIcon("image/chess.png").getImage());
@@ -112,7 +113,7 @@ public class Tabuleiro extends JFrame {
 		botaoSair = new JButton("Sair");
 		botaoInstrucoes = new JButton("Instrucoes");
 		botaoRegras = new JButton("Regras");
-		botaoPecas = new JButton("Cemitério");
+		botaoPecas = new JButton("Cemiterio");
 		
 		//criando nova instancia de imagem do tabuleiro
 		imagemTabuleiro = new ImageIcon("image/board_chess.png");
@@ -146,19 +147,19 @@ public class Tabuleiro extends JFrame {
 
 		jogadordavez.setFont(new Font("", Font.BOLD, 23));
 		//define tamanho e posicao dos botoes
-		jogadordavez.setBounds(50, 0, 600, 50);
-		botaoReiniciar.setBounds(550, 350, 100, 30);
-		botaoInstrucoes.setBounds(550, 384, 100, 30);
-		botaoRegras.setBounds(550, 418, 100, 30);
-		botaoSair.setBounds(550, 452, 100, 30);
-		botaoPecas.setBounds(550,100,100,70);
+		jogadordavez.setBounds(550, 145, 150, 50);
+		botaoReiniciar.setBounds(550, 530, 100, 30);
+		botaoInstrucoes.setBounds(550, 563, 100, 30);
+		botaoRegras.setBounds(550, 596, 100, 30);
+		botaoSair.setBounds(550, 629, 100, 30);
+		botaoPecas.setBounds(550,245,100,70);
 				
 		//adiciona ação nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
-		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instru��es"));
+		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instrucoes"));
 		botaoSair.addActionListener(new FechaJogo());
 		botaoReiniciar.addActionListener(new ReiniciaJogo(this));
-		botaoPecas.addActionListener(new AparecePecasComidas("Pe�as fora do jogo"));
+		botaoPecas.addActionListener(new AparecePecasComidas("Pecas fora do jogo"));
 		tabuleiro.add(jogadordavez);
 		tabuleiro.add(botaoReiniciar);
 		tabuleiro.add(botaoInstrucoes);
@@ -240,6 +241,7 @@ public class Tabuleiro extends JFrame {
 					imagemLabelPeaoBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 					
 					Peao PeaoBranco = new Peao(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelPeaoBranco,this);
+					PeaoBranco.setTipo("peao");
 					pecas.add(PeaoBranco);
 					imagemLabelPeaoBranco.addMouseListener(PeaoBranco);
 					
@@ -257,6 +259,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelTorre1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Torre torreBranco = new Torre(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelTorre1Branco,this);
+						torreBranco.setTipo("torre");
 						pecas.add(torreBranco);
 						imagemLabelTorre1Branco.addMouseListener(torreBranco);
 						
@@ -269,6 +272,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelBispo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Bispo bispoBranco = new Bispo(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelBispo1Branco,this);
+						bispoBranco.setTipo("bispo");
 						pecas.add(bispoBranco);
 						imagemLabelBispo1Branco.addMouseListener(bispoBranco);
 						
@@ -281,6 +285,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelReiBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Rei reiBranco = new Rei(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelReiBranco,this);
+						reiBranco.setTipo("rei");
 						pecas.add(reiBranco);
 						imagemLabelReiBranco.addMouseListener(reiBranco);
 						
@@ -293,6 +298,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelCavalo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo2Branco,this);
+						cavaloBranco.setTipo("cavalo");
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo2Branco.addMouseListener(cavaloBranco);
 						
@@ -305,6 +311,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelCavalo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo1Branco,this);
+						cavaloBranco.setTipo("cavalo");
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo1Branco.addMouseListener(cavaloBranco);
 						
@@ -317,6 +324,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelRainhaBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Rainha rainhaBranco = new Rainha(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelRainhaBranco,this);
+						rainhaBranco.setTipo("rainha");
 						pecas.add(rainhaBranco);
 						imagemLabelRainhaBranco.addMouseListener(rainhaBranco);
 						
@@ -329,6 +337,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelBispo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Bispo bispoBranco = new Bispo(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelBispo2Branco,this);
+						bispoBranco.setTipo("bispo");
 						pecas.add(bispoBranco);
 						imagemLabelBispo2Branco.addMouseListener(bispoBranco);
 						
@@ -341,6 +350,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelTorre2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
 						Torre torreBranco = new Torre(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelTorre2Branco,this);
+						torreBranco.setTipo("torre");
 						pecas.add(torreBranco);
 						imagemLabelTorre2Branco.addMouseListener(torreBranco);
 						
@@ -357,6 +367,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelTorre1Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Torre torrePreto = new Torre(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelTorre1Preto,this);
+							torrePreto.setTipo("torre");
 							pecas.add(torrePreto);
 							imagemLabelTorre1Preto.addMouseListener(torrePreto);
 							
@@ -369,6 +380,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelBispo1Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Bispo bispoPreto = new Bispo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelBispo1Preto,this);
+							bispoPreto.setTipo("bispo");
 							pecas.add(bispoPreto);
 							imagemLabelBispo1Preto.addMouseListener(bispoPreto);
 							
@@ -381,6 +393,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelReiPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Rei reiPreto = new Rei(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelReiPreto,this);
+							reiPreto.setTipo("rei");
 							pecas.add(reiPreto);
 							imagemLabelReiPreto.addMouseListener(reiPreto);
 							
@@ -393,6 +406,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelCavalo2Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Cavalo cavaloPreto = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo2Preto,this);
+							cavaloPreto.setTipo("cavalo");
 							pecas.add(cavaloPreto);
 							imagemLabelCavalo2Preto.addMouseListener(cavaloPreto);
 							
@@ -418,6 +432,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelCavalo1Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Cavalo cavaloPreto = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo1Preto,this);
+							cavaloPreto.setTipo("cavalo");
 							pecas.add(cavaloPreto);
 							imagemLabelCavalo1Preto.addMouseListener(cavaloPreto);
 							
@@ -430,6 +445,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelRainhaPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Rainha rainhaPreto = new Rainha(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelRainhaPreto,this);
+							rainhaPreto.setTipo("rainha");
 							pecas.add(rainhaPreto);
 							imagemLabelRainhaPreto.addMouseListener(rainhaPreto);
 							
@@ -442,6 +458,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelBispo2Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Bispo bispoPreto = new Bispo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelBispo2Preto,this);
+							bispoPreto.setTipo("bispo");
 							pecas.add(bispoPreto);
 							imagemLabelBispo2Preto.addMouseListener(bispoPreto);
 							
@@ -454,6 +471,7 @@ public class Tabuleiro extends JFrame {
 							imagemLabelTorre2Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
 							Torre torrePreto = new Torre(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelTorre2Preto,this);
+							torrePreto.setTipo("torre");
 							pecas.add(torrePreto);
 							imagemLabelTorre2Preto.addMouseListener(torrePreto);
 							
@@ -478,6 +496,7 @@ public class Tabuleiro extends JFrame {
 						imagemLabelPeaoPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 						
 						Peao PeaoPreto = new Peao(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelPeaoPreto,this);
+						PeaoPreto.setTipo("peao");
 						pecas.add(PeaoPreto);
 						imagemLabelPeaoPreto.addMouseListener(PeaoPreto);
 						
@@ -666,7 +685,7 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public void atualizarTabuleiro() {
-
+		janelaJogo.repaint();
 	}
 
 	public void reiniciarTabuleiro() {
@@ -745,17 +764,27 @@ public class Tabuleiro extends JFrame {
 		
 	}
 
-	public boolean validarMovimento(Peca peca, Object c) {
+	public boolean validarMovimento(Peca peca, Object c,Rei r) {
+		
 		if(peca instanceof Peao){
 			Peao p = (Peao)peca;
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				p.movimentarPeca(null,espaco, tabuleiro);
 				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(p.getPosicaox(),p.getPosicaoy(),tabuleiro,p,p.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}				
 			}
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				p.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//verifica xeque do rei num ataque
+					if(r.verificarXeque(p.getPosicaox(),p.getPosicaoy(),tabuleiro,p,p.getCor())){
+	                      JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+					}
 			}
 		}
 		else if(peca instanceof Rei){
@@ -764,10 +793,20 @@ public class Tabuleiro extends JFrame {
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				rei.movimentarPeca(null,espaco,tabuleiro);
+				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(rei.getPosicaox(),rei.getPosicaoy(),tabuleiro,rei,rei.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				rei.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//verifica xeque do rei num ataque
+				if(r.verificarXeque(rei.getPosicaox(),rei.getPosicaoy(),tabuleiro,rei,rei.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 		else if(peca instanceof Bispo){
@@ -776,10 +815,20 @@ public class Tabuleiro extends JFrame {
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				bispo.movimentarPeca(null,espaco,tabuleiro);
+
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(bispo.getPosicaox(),bispo.getPosicaoy(),tabuleiro,bispo,bispo.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				bispo.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//verifica xeque do rei num ataque
+				if(r.verificarXeque(bispo.getPosicaox(),bispo.getPosicaoy(),tabuleiro,bispo,bispo.getCor())){
+                      JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 		else if(peca instanceof Rainha){
@@ -788,10 +837,20 @@ public class Tabuleiro extends JFrame {
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				rainha.movimentarPeca(null,espaco,tabuleiro);
+				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(rainha.getPosicaox(),rainha.getPosicaoy(),tabuleiro,rainha,rainha.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				rainha.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//verifica xeque do rei num ataque
+				if(r.verificarXeque(rainha.getPosicaox(),rainha.getPosicaoy(),tabuleiro,rainha,rainha.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 		else if(peca instanceof Torre){
@@ -800,10 +859,20 @@ public class Tabuleiro extends JFrame {
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				torre.movimentarPeca(null,espaco,tabuleiro);
+				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(torre.getPosicaox(),torre.getPosicaoy(),tabuleiro,torre,torre.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				torre.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(torre.getPosicaox(),torre.getPosicaoy(),tabuleiro,torre,torre.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 		else if(peca instanceof Cavalo){
@@ -812,10 +881,20 @@ public class Tabuleiro extends JFrame {
 			if(c instanceof JButton){
 				JButton espaco = (JButton)c;
 				cavalo.movimentarPeca(null,espaco,tabuleiro);
+				
+				//verifica xeque do rei num movimento
+				if(r.verificarXeque(cavalo.getPosicaox(),cavalo.getPosicaoy(),tabuleiro,cavalo,cavalo.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}		
 			}
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				cavalo.movimentarPeca(pecaNaFrente,null, tabuleiro);
+				
+				//verifica xeque do rei num ataque
+				if(r.verificarXeque(cavalo.getPosicaox(),cavalo.getPosicaoy(),tabuleiro,cavalo,cavalo.getCor())){
+	                  JOptionPane.showMessageDialog(null,"Xeque!","Xadrez",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 		return false;
@@ -847,10 +926,5 @@ public class Tabuleiro extends JFrame {
 	
 	public JPanel getPainel(){
 		return tabuleiro;
-	}
-	
-
-	public static void main(String [] args){
-		new Tabuleiro();
 	}
 }
